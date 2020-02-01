@@ -1,0 +1,15 @@
+{
+  "curly": true,
+  "esnext": true,
+  "esversion": 6,
+  "forin": true,
+  "freeze": true,
+  "maxdepth": 5,
+  "noarg": true,
+  "nocomma": true,
+  "node": true,
+  "nonew": true,
+  "shadow": true,
+  "singleGroups": true,
+  "undef": true
+}

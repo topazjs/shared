@@ -1,0 +1,19 @@
+.study-form-modal.study-form-modal #swal2-content,
+.study-form-signature-modal.study-form-signature-modal #swal2-content {
+    text-align: initial;
+
+    input[type="text"],
+    textarea {
+        color: #000000;
+        background: #FFFFFF !important;
+        border: 1px solid;
+    }
+}
+
+.study-form-modal.study-form-modal #swal2-content {
+    color: #000000;
+}
+
+.study-form-modal.study-form-modal #swal2-content .mergeItem {
+    background-color: yellow;
+}

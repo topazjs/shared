@@ -1,0 +1,16 @@
+.category-item-list {
+    display: flex;
+    /*justify-content: space-around;*/
+    justify-content: space-between;
+    align-items: flex-start;
+    align-content: flex-start;
+    flex-flow: row wrap;
+}
+
+.item.category-item {
+    display: block;
+    width: 225px;
+    min-height: 70px;
+    max-height: 130px;
+    /*flex-basis: auto;*/
+}

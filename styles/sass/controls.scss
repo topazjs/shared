@@ -1,0 +1,57 @@
+/*******************
+Controls (body/editors)
+********************/
+
+.row-editor-wrap {
+    position: relative;
+
+    .row-editor--options-toggle__button,
+    .row-editor--remove__button {
+        cursor: pointer;
+        pointer-events: none;
+        opacity: 0;
+    }
+
+    .row-editor--options-toggle__button {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+    }
+
+    &:hover {
+        .row-editor--options-toggle__button,
+        .row-editor--remove__button {
+            opacity: .7;
+            pointer-events: auto;
+
+            &:hover {
+                opacity: 1;
+            }
+
+            &:active {
+                opacity: .5;
+            }
+        }
+    }
+}
+
+.row-editor-wrap .form-control--download {
+    cursor: pointer;
+    opacity: 1;
+}
+
+.row-editor-wrap .form-control--download:active {
+    opacity: .5;
+}
+
+.current-signature {
+    position: relative;
+    border: 1px solid;
+}
+
+.control-image--preview__image {
+    max-width: 300px;
+    max-height: 300px;
+    width: auto;
+    height: auto;
+}
