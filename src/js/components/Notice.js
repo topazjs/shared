@@ -3,6 +3,11 @@
 
 import React from 'react';
 
+import fonts1 from "@fortawesome/fontawesome-free/css/fontawesome.css";
+import fonts2 from "@fortawesome/fontawesome-free/css/solid.css";
+import fonts3 from "@fortawesome/fontawesome-free/css/regular.css";
+import css from "./Notice.css";
+
 export const typeIntents = {
     'plain': `info`,
     'error': `danger`,
@@ -27,7 +32,7 @@ export type propsType = {
 
 export const NoticeInner = React.memo(( { message, type, title }: propsType ) => {
     return (
-        <div className={`tw-max-w-sm tw-w-full tw-flex`}>
+        <div className={`tpz-notice-box tw-max-w-sm tw-w-full tw-flex`}>
             <div className={`tw-flex tw-flex-col tw-bg-${typeIntents[ type ]}-darker tw-h-auto tw-w-auto tw-text-2xl tw-rounded-l tw-p-4 tw-justify-center`}>
                 <span className={`fa fa-${typeIcons[ type ]} tw-text-white`} />
             </div>

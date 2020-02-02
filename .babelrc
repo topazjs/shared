@@ -1,19 +1,24 @@
 {
     "presets": [
+        [
+            "@babel/preset-env",
+            {
+                "targets": {
+                    "browsers": [
+                        "last 2 versions"
+                    ]
+                },
+                "loose": true
+            }
+        ],
         "@babel/preset-flow",
-        "@babel/preset-react",
-        ["@babel/preset-env", {
-            "targets": {
-                "browsers": ["last 2 versions"]
-            },
-            "loose": true
-        }]
+        "@babel/preset-react"
     ],
     "plugins": [
+        "transform-node-env-inline",
         "@babel/plugin-proposal-export-default-from",
         "@babel/plugin-proposal-export-namespace-from",
         "syntax-exponentiation-operator",
-        "transform-node-env-inline",
         "@babel/plugin-transform-react-constant-elements",
         "@babel/plugin-transform-react-inline-elements",
         ["@babel/plugin-proposal-decorators", { "legacy": true }],
