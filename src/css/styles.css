@@ -14,7 +14,12 @@
  * @import "tailwindcss/preflight";
  */
 
-@tailwind base;
+/**
+ * Since this is supposed to be an imported library let's not mess
+ * up base styles for the parent project
+ */
+
+/*@tailwind base;*/
 
 /**
  * This injects any component classes registered by plugins.

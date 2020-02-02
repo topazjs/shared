@@ -12,31 +12,6 @@ import {
 
 import memoize from 'fast-memoize';
 import moment from 'moment-timezone';
-/*
-
-/!**
- * Courtesy of:
- * http://stackoverflow.com/a/4819886/2780033
- * @returns {boolean}
- *!/
-const checkTouch = () => (
-    document.createEvent('TouchEvent') && (
-        'ontouchstart' in document.documentElement ||
-        'ontouchstart' in window
-    ) ||
-    navigator.maxTouchPoints > 0 ||
-    navigator.msMaxTouchPoints > 0
-);
-
-export const isTouchDevice = (() => {
-    try {
-        return checkTouch();
-    }
-    catch ( e ) {
-        return false;
-    }
-})();
-*/
 
 export const notEmptyStr = value => (
     typeof value === 'string' && value.trim()

@@ -6,7 +6,7 @@ import React from 'react';
 import Label from '../statics/Label';
 import HelpText from '../statics/HelpText';
 import InputIcon from '../statics/InputIcon';
-import ErrorCatcher from '../shared/ErrorCatcher';
+import ErrorCatcher from './ErrorCatcher';
 
 export type innerPropsType = {
     children: any,
