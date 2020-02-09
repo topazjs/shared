@@ -19,7 +19,7 @@ const Input = props => {
 
     return (
         <input
-            required
+            required={!!props.required}
             type={`text`}
             name={`my-input`}
             id={`my-input`}
@@ -66,7 +66,6 @@ export const IconInput = () => {
             inputName={`my-input`}
             labelText={`Try typing some random words to render random icons (error, invalid, success, etc)`}
             helpText={playWithIcons}
-            showLeftIcon={!!icon}
             required>
             <input
                 required
@@ -75,6 +74,36 @@ export const IconInput = () => {
                 id={`my-input`}
                 value={value}
                 onChange={e => setValue(e.target.value)} />
+        </InputWrap>
+    );
+};
+
+/**
+ * These two aren't behaving correctly cuz I've been piecing this
+ * whole project together from all the others on my HDD.
+ * And right now too lazy to care about icons on a text input.
+ */
+
+const LeftIconInput = () => {
+    return (
+        <InputWrap
+            showLeftIcon
+            inputName={`my-input`}
+            labelText={`Running out of words`}
+            helpText={`Billy bob koala mama`}>
+            <Input />
+        </InputWrap>
+    );
+};
+
+const RightIconInput = () => {
+    return (
+        <InputWrap
+            showRightIcon
+            inputName={`my-input`}
+            labelText={`Words, running them out`}
+            helpText={`Save meeeeeee`}>
+            <Input />
         </InputWrap>
     );
 };

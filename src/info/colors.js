@@ -7,7 +7,7 @@ import {
     faExclamationTriangle,
     faCheckCircle,
     faMoon,
-    faStop,
+    faBan,
 } from '@fortawesome/free-solid-svg-icons';
 
 import type {
@@ -33,7 +33,7 @@ export const iconMap: iconMapType = {
     [Intentions.WARNING]: faExclamationTriangle,
     [Intentions.SUCCESS]: faCheckCircle,
     [Intentions.LIGHT]: faMoon,
-    [Intentions.INVALID]: faStop,
+    [Intentions.INVALID]: faBan,
 };
 
 export const standardColorMap = {

@@ -264,7 +264,7 @@ export const LoaderInner = React.memo(( props: propsType ) => {
     } = props;
 
     return (
-        <LoaderDiv onClick={handleClick}>
+        <LoaderDiv className={`lock-n-loader`} onClick={handleClick}>
             <LockNLoaderDiv>
                 <BigSqrDiv key={`loader-sqr-key`}>
                     <FirstSquareDiv key={`loader-key-first`} />

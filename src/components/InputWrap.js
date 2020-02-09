@@ -1,7 +1,18 @@
 'use strict';
 /* @flow */
 
+import { icon } from '@fortawesome/fontawesome-svg-core';
 import React from 'react';
+
+import {
+    faCircle,
+} from '@fortawesome/free-solid-svg-icons';
+
+import {
+    SUCCESS,
+    INVALID,
+} from '../info/intentions';
+
 import styled from 'styled-components';
 
 import Label from './statics/Label';
@@ -25,7 +36,6 @@ export const StyledInputWrap = styled.div`
 
 export const StyledInputWrapInner = styled.div`
     margin-bottom: 3px;
-    padding-left:
 `;
 
 export type innerPropsType = {
@@ -40,7 +50,7 @@ export type innerPropsType = {
     value: ?(string|boolean|number),
     valid: ?boolean,
     invalid: ?boolean,
-    iconName: ?string,
+    icon: ?string,
 };
 
 export const InputWrapInner = ( props: innerPropsType ) => {
@@ -66,9 +76,9 @@ export const InputWrapInner = ( props: innerPropsType ) => {
     } = props;
 
     const stateColor = valid
-        ? standardColorMap.success
+        ? standardColorMap[ SUCCESS ]
         : value
-            ? standardColorMap.invalid
+            ? standardColorMap[ INVALID ]
             : ``;
 
     const leftIcon = showLeftIcon !== false
@@ -77,7 +87,7 @@ export const InputWrapInner = ( props: innerPropsType ) => {
                 key={`left-icon`}
                 color={stateColor}
                 position={`left`}
-                iconName={`circle`} />
+                icon={faCircle} />
         )
         : null;
 
@@ -87,7 +97,7 @@ export const InputWrapInner = ( props: innerPropsType ) => {
                 key={`right-icon`}
                 color={stateColor}
                 position={`right`}
-                iconName={valid ? `check` : value ? `exclamation-triangle` : ``} />
+                icon={valid ? iconMap[ SUCCESS ] : value ? iconMap[ INVALID ] : ``} />
         )
         : null;
 
@@ -124,7 +134,7 @@ export const InputWrapInner = ( props: innerPropsType ) => {
     return (
         <StyledInputWrap
             style={{ width }}
-            className={`${wrapClass} tw-mx-2 tw-py-2`}>
+            className={wrapClass}>
 
             <StyledInputWrapInner
                 key={`main-key`}
@@ -154,11 +164,11 @@ export type propsType = {
     inputName: string,
     helpText: string,
     labelText: string,
-    getOptions: ?Func,
+    getOptions: ?Function,
     value: ?(string | boolean | number),
     valid: ?boolean,
     invalid: ?boolean,
-    iconName: ?string,
+    icon: ?string,
 };
 
 export default function InputWrap ( props: propsType ) {
@@ -186,8 +196,7 @@ export default function InputWrap ( props: propsType ) {
                 hideHelpTextWhenValid={hideHelpTextWhenValid}
                 wrapClass={wrapClass}
                 width={width}
-                labelClass={labelClass}
-                />
+                labelClass={labelClass} />
         </ErrorCatcher>
     );
 }

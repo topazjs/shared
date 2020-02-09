@@ -10,7 +10,7 @@ import type {
 
 import {
     FontAwesomeIcon,
-} from '@fortawesome/react-fontawesome'
+} from '@fortawesome/react-fontawesome';
 
 import type {
     IconDefinition,

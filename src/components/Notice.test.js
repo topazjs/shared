@@ -1,4 +1,4 @@
-// hello.test.js
+'use strict';
 
 import React from "react";
 import { render, unmountComponentAtNode } from "react-dom";

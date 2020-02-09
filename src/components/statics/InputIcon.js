@@ -2,36 +2,84 @@
 /* @flow */
 
 import React from 'react';
-
 import ErrorCatcher from '../ErrorCatcher';
+import styled, { css } from 'styled-components';
+
+import {
+    FontAwesomeIcon,
+} from '@fortawesome/react-fontawesome'
+
+import {
+    standardColorMap,
+} from '../../info/colors';
+
+import {
+    PLAIN,
+} from '../../info/intentions';
+
+
+export const StyledIconCSS = css`
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    padding-left: 2px;
+    padding-right: 2px;
+    font-size: 0.5em;
+    width: 1rem;
+    height: 80%;
+`;
+
+
 
 export type propsType = {
-    iconName: string,
-    position: ?string,
-    stateColor: ?string,
+    icon: string,
+    position: string,
+    color: string,
 };
 
-export const InputIconInner = ( props: propsType ) => {
+export const InputIconInner = React.memo(( props: propsType ) => {
+    const {
+        position,
+        icon,
+        color,
+    } = props;
+
+    const IconWrap = styled.div`
+        ${StyledIconCSS}
+        ${position}: 0;
+        color: ${standardColorMap[ color ]}
+    `;
+
+    return (
+        <IconWrap>
+            <FontAwesomeIcon icon={icon} />
+        </IconWrap>
+    );
+});
+
+export type wrapPropsType = {
+    icon: string,
+    position: ?string,
+    color: ?string,
+};;
+
+export default function InputIcon ( props: wrapPropsType ) {
     const {
         position = `left`,
-        iconName = ``,
-        color = `black`,
+        icon = ``,
+        color = PLAIN,
     } = props;
 
     return (
-        <div className={`tw-pointer-events-none tw-absolute tw-pin-y tw-pin-${position.charAt(0)} tw-flex tw-items-center tw-px-2 tw-text-${color} tw-width-4 tw-height-4/5 tw-text-sm`}>
-            <i className={`fa fa-${iconName}`} />
-        </div>
-    );
-};
-
-export type wrapPropsType = propsType;
-
-export default function InputIcon ( props: wrapPropsType ) {
-    return (
         <ErrorCatcher>
             <InputIconInner
-                {...props} />
+                position={position}
+                icon={icon}
+                color={color}
+            />
         </ErrorCatcher>
     );
 }
