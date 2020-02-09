@@ -2,11 +2,31 @@
 /* @flow */
 
 import React from 'react';
+import styled from 'styled-components';
 
-import Label from '../statics/Label';
-import HelpText from '../statics/HelpText';
-import InputIcon from '../statics/InputIcon';
+import Label from './statics/Label';
+import HelpText from './statics/HelpText';
+import InputIcon from './statics/InputIcon';
 import ErrorCatcher from './ErrorCatcher';
+
+import {
+    iconMap,
+    standardColorMap,
+    darkerColorMap,
+} from '../utils/colors';
+
+export const StyledInputWrap = styled.div`
+    font-size: 0.5rem;
+    margin-left: 2px;
+    margin-right: 2px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+`;
+
+export const StyledInputWrapInner = styled.div`
+    margin-bottom: 3px;
+    padding-left:
+`;
 
 export type innerPropsType = {
     children: any,
@@ -28,31 +48,28 @@ export const InputWrapInner = ( props: innerPropsType ) => {
         children,
         error,
         touched,
-        visited,
         inputName,
         helpText,
         labelText,
-        getOptions,
         value,
         valid,
         invalid,
-        required = false,
-        showLeftIcon = false,
-        showRightIcon = false,
-        labelAfterInput = false,
-        // wrapClass = `tw-flex`,
-        wrapClass = ``,
-        // width = `3/10`,
-        width = ``,
-        labelClass = ``,
-        hideHelpText: hideWhenValid = false,
+        required,
+        showLeftIcon,
+        showRightIcon,
+        labelAfterInput,
+        wrapClass,
+        width,
+        labelClass,
+        hideHelpText,
+        hideHelpTextWhenValid,
     } = props;
 
     const stateColor = valid
-        ? 'success'
+        ? standardColorMap.success
         : value
-            ? 'danger'
-            : '';
+            ? standardColorMap.invalid
+            : ``;
 
     const leftIcon = showLeftIcon !== false
         ? (
@@ -74,14 +91,6 @@ export const InputWrapInner = ( props: innerPropsType ) => {
         )
         : null;
 
-    const hasIconsLeft = leftIcon
-        ? `tw-pl-4`
-        : ``;
-
-    const hasIconsRight = rightIcon
-        ? `tw-pr-4`
-        : ``;
-
     const labelEl = (
         <Label
             key={`label-key`}
@@ -91,15 +100,35 @@ export const InputWrapInner = ( props: innerPropsType ) => {
             required={required} />
     );
 
-    const widthClass = width ? `tw-w-${width}` : ``;
+    let helpTextEl = null;
+    if ( !hideHelpText ) {
+        helpTextEl = (
+            <div key={`help-text-key`}>
+                <HelpText
+                    text={helpText || error}
+                    hideWhenValid={hideHelpTextWhenValid}
+                    invalid={invalid && touched} />
+            </div>
+        );
+    }
 
-    // old classes for wrap - tw-flex-wrap tw-items-center
+    const innerStyles = {
+        'paddingLeft': leftIcon
+            ? 4
+            : ``,
+        'paddingRight': rightIcon
+            ? 4
+            : ``,
+    };
+
     return (
-        <div className={`${wrapClass} ${widthClass} tw-text-xl tw-mx-2 tw-py-2`}>
+        <StyledInputWrap
+            style={{ width }}
+            className={`${wrapClass} tw-mx-2 tw-py-2`}>
 
-            <div
+            <StyledInputWrapInner
                 key={`main-key`}
-                className={`${hasIconsRight} ${hasIconsLeft} tw-mb-3`}>
+                style={innerStyles}>
 
                 {!labelAfterInput && labelEl}
 
@@ -110,26 +139,55 @@ export const InputWrapInner = ( props: innerPropsType ) => {
                 {leftIcon}
 
                 {rightIcon}
-            </div>
+            </StyledInputWrapInner>
 
-            <div
-                key={`help-text-key`}>
-                <HelpText
-                    text={helpText || error}
-                    hideWhenValid={hideWhenValid}
-                    invalid={invalid && touched} />
-            </div>
-        </div>
+            {helpTextEl}
+        </StyledInputWrap>
     );
 };
 
-export type propsType = innerPropsType;
+export type propsType = {
+    children: any,
+    error: ?string,
+    notifyIcon: string,
+    stateColor: string,
+    inputName: string,
+    helpText: string,
+    labelText: string,
+    getOptions: ?Func,
+    value: ?(string | boolean | number),
+    valid: ?boolean,
+    invalid: ?boolean,
+    iconName: ?string,
+};
 
 export default function InputWrap ( props: propsType ) {
+    const {
+        required = false,
+        showLeftIcon = false,
+        showRightIcon = false,
+        labelAfterInput = false,
+        hideHelpText = false,
+        hideHelpTextWhenValid = false,
+        wrapClass = ``,
+        width = ``,
+        labelClass = ``,
+    } = props;
+
     return (
         <ErrorCatcher>
             <InputWrapInner
-                {...props} />
+                {...props}
+                required={required}
+                showLeftIcon={showLeftIcon}
+                showRightIcon={showRightIcon}
+                labelAfterInput={labelAfterInput}
+                hideHelpText={hideHelpText}
+                hideHelpTextWhenValid={hideHelpTextWhenValid}
+                wrapClass={wrapClass}
+                width={width}
+                labelClass={labelClass}
+                />
         </ErrorCatcher>
     );
 }

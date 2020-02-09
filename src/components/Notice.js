@@ -12,60 +12,33 @@ import {
     FontAwesomeIcon,
 } from '@fortawesome/react-fontawesome'
 
-import {
-    faInfoCircle,
-    faExclamationCircle,
-    faExclamationTriangle,
-    faCheckCircle,
-} from '@fortawesome/free-solid-svg-icons'
-
 import type {
     IconDefinition,
 } from '@fortawesome/fontawesome-common-types';
 
-export const typeIcons = {
-    'plain': faInfoCircle,
-    'error': faExclamationCircle,
-    'info': faInfoCircle,
-    'warning': faExclamationTriangle,
-    'success': faCheckCircle,
-};
-
-export const textColorMap = {
-    'plain': `#253137`,
-    'error': `#E3342F`,
-    'info': `#3490DC`,
-    'warning': `#F6993F`,
-    'success': `#38C172`,
-    'light': `#F1F5F8`,
-};
-
-export const titleColorMap = {
-    'plain': `#22292F`,
-    'error': `#CC1F1A`,
-    'info': `#2779BD`,
-    'warning': `#DE751F`,
-    'success': `#1F9D55`,
-    'light': `#F1F5F8`,
-};
+import {
+    iconMap,
+    standardColorMap,
+    darkerColorMap,
+} from '../utils/colors';
 
 export const cssInverts = {
     title: type =>
         css`
-            color: ${textColorMap.light};
-            text-shadow: 1px 1px 0 ${titleColorMap[ type ]}, -1px -1px 0 ${titleColorMap[ type ]}, 
-                1px 0px 1px ${titleColorMap[ type ]}, 0px -1px 1px ${titleColorMap[ type ]}, 
-                -1px 1px 0px ${titleColorMap[ type ]}, 1px -1px 0px ${titleColorMap[ type ]};
+            color: ${standardColorMap.light};
+            text-shadow: 1px 1px 0 ${darkerColorMap[ type ]}, -1px -1px 0 ${darkerColorMap[ type ]}, 
+                1px 0px 1px ${darkerColorMap[ type ]}, 0px -1px 1px ${darkerColorMap[ type ]}, 
+                -1px 1px 0px ${darkerColorMap[ type ]}, 1px -1px 0px ${darkerColorMap[ type ]};
         `,
     text: type =>
         css`
-            color: ${titleColorMap.light};
+            color: ${darkerColorMap.light};
         `,
     container: type =>
         css`
-            background-color: ${textColorMap[ type ]};
-            border-color: ${titleColorMap[ type ]};
-            color: ${textColorMap.light};
+            background-color: ${standardColorMap[ type ]};
+            border-color: ${darkerColorMap[ type ]};
+            color: ${standardColorMap.light};
         `,
 };
 
@@ -181,18 +154,18 @@ export type getColorsType = ( string, boolean ) => ({
 });
 
 export const getColors: getColorsType = ( type, inverted ) => {
-    let icon = typeIcons[ type ];
-    let textColor = textColorMap[ type ];
+    let icon = iconMap[ type ];
+    let textColor = standardColorMap[ type ];
     let titleCSS = css`
-        color: ${titleColorMap[ type ]};
+        color: ${darkerColorMap[ type ]};
     `;
     let containerCSS = css`
         background-color: transparent;
-        border-color: ${titleColorMap[ type ]};
+        border-color: ${darkerColorMap[ type ]};
     `;
 
     if ( inverted === true ) {
-        textColor = titleColorMap.light;
+        textColor = darkerColorMap.light;
         titleCSS = cssInverts.title(type);
         containerCSS = cssInverts.container(type);
     }
