@@ -1,6 +1,14 @@
 'use strict';
 /* @flow */
 
+/*******
+ * These are just a bunch of helper functions, etc I've accumulated over time and use
+ * in different projects.
+ *
+ * Don't actually think I'm using in this project either just want it somewhere I can
+ * get to easily.
+ *******/
+
 import {
     Map,
     OrderedSet

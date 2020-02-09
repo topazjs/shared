@@ -1,7 +1,7 @@
 'use strict';
 /* @flow */
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import styled, { css } from 'styled-components';
 
 import type {
@@ -197,8 +197,8 @@ export default function Notice ( props: propsType ) {
         inverted = false,
     } = props;
 
-    if ( !Intentions[ type ] ) {
-        throw new Error(`An invalid type was passed to the Notice component - "${type}" is not supported right now`);
+    if ( !type || !Intentions[ type ] ) {
+        throw new Error(`An invalid type of ${type} was passed to the Notice component - see info/intentions for a list of valid options`);
     }
 
     const {
