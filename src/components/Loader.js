@@ -253,54 +253,57 @@ export const Text = styled.div`
 `;
 
 export type propsType = {
-    onClick: Function
+    handleClick: Function,
+    message: string,
 };
 
 export const LoaderInner = React.memo(( props: propsType ) => {
     const {
-        onClick
+        handleClick,
+        message,
     } = props;
 
     return (
-        <LoaderDiv
-            className={`loader-container loading`}
-            onClick={onClick}>
-            <LockNLoaderDiv className="lock-n-loader">
-                <BigSqrDiv key={`loader-sqr-key`} className="bigSqr">
-                    <FirstSquareDiv key={`loader-key-first`} className="square first" />
-                    <SecondSquareDiv key={`loader-key-second`} className="square second" />
-                    <ThirdSquareDiv key={`loader-key-third`} className="square third" />
-                    <FourthSquareDiv key={`loader-key-fourth`} className="square fourth" />
+        <LoaderDiv onClick={handleClick}>
+            <LockNLoaderDiv>
+                <BigSqrDiv key={`loader-sqr-key`}>
+                    <FirstSquareDiv key={`loader-key-first`} />
+                    <SecondSquareDiv key={`loader-key-second`} />
+                    <ThirdSquareDiv key={`loader-key-third`} />
+                    <FourthSquareDiv key={`loader-key-fourth`} />
                 </BigSqrDiv>
-                <Text key={`loader-text-key`} className="text">
-                    loading...
+                <Text key={`loader-text-key`}>
+                    {message}
                 </Text>
             </LockNLoaderDiv>
         </LoaderDiv>
     );
 });
 
-export type wrapPropsType = propsType;
+export type wrapPropsType = {
+    handleClick: ?Function,
+    message: ?string,
+};
 
-export type wrapStateType = {};
-
-export default class Loader extends PureComponent {
+export default class Loader extends PureComponent <wrapPropsType> {
     render () {
         const {
-            handleClick
+            handleClick,
+            props,
         } = this;
+
+        const {
+            message = `loading...`,
+        } = props;
 
         return (
             <LoaderInner
-                onClick={handleClick} />
+                handleClick={handleClick}
+                message={message} />
         );
     }
 
-    handleClick = ( event: Event ) => {
-        event.preventDefault();
-        event.stopPropagation();
-        if ( typeof this.props.handleClick === `function` ) {
-            this.props.handleClick();
-        };
-    };
+    handleClick = typeof this.props.handleClick === `function`
+        ? this.props.handleClick
+        : ( event: Event ) => {};
 }

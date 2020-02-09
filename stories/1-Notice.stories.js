@@ -3,7 +3,7 @@
 
 import React, { useState } from 'react';
 import { action } from '@storybook/addon-actions';
-import Notice from '../src/js/components/Notice';
+import Notice from '../src/components/Notice';
 
 export default {
   title: 'Notice',

@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { action } from '@storybook/addon-actions';
-import ErrorCatcher, { withErrorCatcher } from '../src/js/components/ErrorCatcher';
+import ErrorCatcher, { withErrorCatcher } from '../src/components/ErrorCatcher';
 
 export default {
   title: 'Error Catcher HOC and Component',

@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { action } from '@storybook/addon-actions';
-import { Loader } from '../src/js/App';
+import Loader from '../src/components/Loader';
 
 export default {
   title: 'Loader',
