@@ -3,7 +3,6 @@
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
-import { action } from '@storybook/addon-actions';
 import InputWrap from '../src/components/InputWrap';
 import {
     iconMap,
@@ -53,7 +52,7 @@ export const NotRequiredInput = () => {
 
 export const IconInput = () => {
     const [ value, setValue ] = useState(``);
-    const icon = iconMap[ value ];
+    const icon = iconMap[ value ] || iconMap[ value.toUpperCase() ];
 
     return (
         <InputWrap
