@@ -1,8 +1,7 @@
 'use strict';
 /* @flow */
 
-import React, { useState } from 'react';
-import { action } from '@storybook/addon-actions';
+import React from 'react';
 import Notice from '../src/components/Notice';
 import * as Intentions from '../src/info/intentions';
 

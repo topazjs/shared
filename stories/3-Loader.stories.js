@@ -1,7 +1,6 @@
 'use strict';
 
 import React, { useState } from 'react';
-import { action } from '@storybook/addon-actions';
 import Loader from '../src/components/Loader';
 
 export default {
@@ -9,7 +8,9 @@ export default {
   component: Loader,
 };
 
-export const Takeover = () => {
+export const Loading = () => <Loader />;
+
+export const DismissableLoader = () => {
     const [ visible, toggle ] = useState(true);
     return visible && <Loader handleClick={() => toggle(!visible)} />;
 };
