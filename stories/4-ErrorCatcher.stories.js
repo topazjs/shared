@@ -1,7 +1,6 @@
 'use strict';
 
-import React, { useState } from 'react';
-import { action } from '@storybook/addon-actions';
+import React from 'react';
 import ErrorCatcher, { withErrorCatcher } from '../src/components/ErrorCatcher';
 
 export default {
@@ -9,16 +8,16 @@ export default {
   component: ErrorCatcher,
 };
 
-export function HOCExample () {
-    function BadComponent ( props ) {
-        throw new Error(`oops!`);
-        return (
-            <div {...props}>
-                {props.children}
-            </div>
-        );
-    }
+function BadComponent ( props ) {
+    throw new Error(`oops!`);
+    return (
+        <div {...props}>
+            {props.children}
+        </div>
+    );
+}
 
+export function HOCExample () {
     const SafelyWrapped = withErrorCatcher(BadComponent);
 
     return (
@@ -33,15 +32,6 @@ export function HOCExample () {
 };
 
 export function ComponentChildrenExample () {
-    function BadComponent ( props ) {
-        throw new Error(`oops!`);
-        return (
-            <div {...props}>
-                {props.children}
-            </div>
-        );
-    }
-
     return (
         <div>
             <h3>Errors below won't affect me</h3>
