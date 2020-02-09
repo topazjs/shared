@@ -7,54 +7,52 @@ import { action } from '@storybook/addon-actions';
 import InputWrap from '../src/components/InputWrap';
 import {
     iconMap,
-} from '../src/utils/colors';
+} from '../src/info/colors';
 
 export default {
-    title: 'Input wrap - label, input, icon(s), help text',
+    title: 'Input wrap - label, icon(s), help text',
     component: InputWrap,
 };
 
-export const RequiredInput = () => {
+const Input = props => {
     const [ value, setValue ] = useState(``);
 
+    return (
+        <input
+            required
+            type={`text`}
+            name={`my-input`}
+            id={`my-input`}
+            value={value}
+            onChange={e => setValue(e.target.value)} />
+    );
+}
+
+export const RequiredInput = () => {
     return (
         <InputWrap
             inputName={`my-input`}
             labelText={`Social Security Number`}
             helpText={`Not really..lol`}
             required>
-            <input
-                required
-                type={`text`}
-                name={`my-input`}
-                id={`my-input`}
-                value={value}
-                onChange={e => setValue(e.target.value)} />
+            <Input />
         </InputWrap>
     );
 };
 
 export const NotRequiredInput = () => {
-    const [ value, setValue ] = useState(``);
-
     return (
         <InputWrap
             inputName={`my-input`}
             labelText={`Favorite Pizza`}
             helpText={`I'd go pineapple chicken tomato bbq`}>
-            <input
-                type={`text`}
-                name={`my-input`}
-                id={`my-input`}
-                value={value}
-                onChange={e => setValue(e.target.value)} />
+            <Input />
         </InputWrap>
     );
 };
 
 export const IconInput = () => {
     const [ value, setValue ] = useState(``);
-
     const icon = iconMap[ value ];
 
     return (

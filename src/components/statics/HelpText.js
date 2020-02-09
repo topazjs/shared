@@ -9,7 +9,7 @@ import {
     iconMap,
     standardColorMap,
     darkerColorMap,
-} from '../../utils/colors';
+} from '../../info/colors';
 
 export const StyledHelpText = styled.p`
     color: #606F7B;

@@ -13,7 +13,7 @@ import {
     iconMap,
     standardColorMap,
     darkerColorMap,
-} from '../utils/colors';
+} from '../info/colors';
 
 export const StyledInputWrap = styled.div`
     font-size: 0.5rem;

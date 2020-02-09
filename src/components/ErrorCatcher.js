@@ -8,6 +8,7 @@ import React, {
 import hoistStatics from 'hoist-non-react-statics';
 import styled from 'styled-components';
 import Notice from './Notice';
+import { ERROR } from '../info/intentions';
 
 export type propsType = {
     children: ?any,
@@ -64,7 +65,7 @@ export default class ErrorCatcher extends PureComponent<propsType, stateType> {
 
             return (
                 <Notice
-                    type={`error`}
+                    type={ERROR}
                     title={title}
                     message={message}>
                     <ErrorDetails>
@@ -96,6 +97,6 @@ export const withErrorCatcher = Component => {
     };
 
     WithErrorCatcher.displayName = `WithErrorCatcher(${getDisplayName(Component)})`;
-    
+
     return hoistStatics(WithErrorCatcher, Component);
 };

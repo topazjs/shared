@@ -1,7 +1,7 @@
 'use strict';
 /* @flow */
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled, { css } from 'styled-components';
 
 import type {
@@ -20,25 +20,27 @@ import {
     iconMap,
     standardColorMap,
     darkerColorMap,
-} from '../utils/colors';
+} from '../info/colors';
+
+import * as Intentions from '../info/intentions';
 
 export const cssInverts = {
     title: type =>
         css`
-            color: ${standardColorMap.light};
+            color: ${standardColorMap.LIGHT};
             text-shadow: 1px 1px 0 ${darkerColorMap[ type ]}, -1px -1px 0 ${darkerColorMap[ type ]}, 
                 1px 0px 1px ${darkerColorMap[ type ]}, 0px -1px 1px ${darkerColorMap[ type ]}, 
                 -1px 1px 0px ${darkerColorMap[ type ]}, 1px -1px 0px ${darkerColorMap[ type ]};
         `,
     text: type =>
         css`
-            color: ${darkerColorMap.light};
+            color: ${darkerColorMap.LIGHT};
         `,
     container: type =>
         css`
             background-color: ${standardColorMap[ type ]};
             border-color: ${darkerColorMap[ type ]};
-            color: ${standardColorMap.light};
+            color: ${standardColorMap.LIGHT};
         `,
 };
 
@@ -165,7 +167,7 @@ export const getColors: getColorsType = ( type, inverted ) => {
     `;
 
     if ( inverted === true ) {
-        textColor = darkerColorMap.light;
+        textColor = darkerColorMap.LIGHT;
         titleCSS = cssInverts.title(type);
         containerCSS = cssInverts.container(type);
     }
@@ -189,14 +191,14 @@ export type propsType = {
 export default function Notice ( props: propsType ) {
     const {
         message,
-        title = ``,
+        title,
         type,
         children,
         inverted = false,
     } = props;
 
-    if ( !message && !title && !children ) {
-        throw new Error(`The Notice component needs something to display - add a message, title and/or children`);
+    if ( !Intentions[ type ] ) {
+        throw new Error(`An invalid type was passed to the Notice component - "${type}" is not supported right now`);
     }
 
     const {
