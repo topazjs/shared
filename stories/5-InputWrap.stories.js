@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
 import InputWrap from '../src/components/InputWrap';
 import {
+    standardColorMap,
     iconMap,
 } from '../src/info/colors';
 
@@ -54,11 +55,17 @@ export const IconInput = () => {
     const [ value, setValue ] = useState(``);
     const icon = iconMap[ value ] || iconMap[ value.toUpperCase() ];
 
+    const playWithIcons = icon
+        ? <FontAwesomeIcon
+            style={{ color: standardColorMap[ value.toUpperCase() ] }}
+            icon={icon} />
+        : value;
+
     return (
         <InputWrap
             inputName={`my-input`}
             labelText={`Try typing some random words to render random icons (error, invalid, success, etc)`}
-            helpText={icon ? <FontAwesomeIcon icon={icon} /> : value}
+            helpText={playWithIcons}
             showLeftIcon={!!icon}
             required>
             <input
