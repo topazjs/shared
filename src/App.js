@@ -1,16 +1,10 @@
 'use strict';
 /* @flow */
 
-// export * as ErrorCatcher from './components/ErrorCatcher';
+export * as helpers from './utils';
+export * as Intentions from './info/intentions';
+export * from './info/colors';
 export ErrorCatcher, { withErrorCatcher } from './components/ErrorCatcher';
 export Loader from './components/Loader';
 export Notice from './components/Notice';
-export * as helpers from './utils';
-/*
-
-export const components = {
-    ErrorCatcher,
-    Loader,
-    Notice,
-};
-*/
+export InputWrap from './components/InputWrap';

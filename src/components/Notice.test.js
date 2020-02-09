@@ -6,12 +6,6 @@ import { act } from "react-dom/test-utils";
 
 import * as Intentions from '../info/intentions';
 
-import {
-    standardColorMap,
-    darkerColorMap,
-    iconMap,
-} from '../info/colors';
-
 import Notice from './Notice';
 
 let container = null;
