@@ -1,25 +1,30 @@
 {
   "name": "@topazjs/shared",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "topazjs - Commonly-used, shared, generic components",
-  "main": "index.js",
-  "private": false,
+    "main": "dist/main.app.js",
+  "private": true,
   "scripts": {
     "test": "jest .",
     "prep": "sh clean.sh dist",
     "reset": "rm -rf node_modules; npm i --force",
     "refresh": "npm run prep && npm run reset",
     "watch": "npm run prep && npm run js-watch",
-    "build": "npm run prep && npm run js-build",
+      "build": "webpack",
+    "build-old": "npm run prep && npm run js-build",
     "build-dist": "npm run prep && npm run js-build-dist && npm run js-min",
-    "js-build": "export NODE_ENV=development;browserify -s ${PWD##*/} -e src/App.js -v -d -t envify -t babelify | exorcist dist/app.js.map -u /${PWD##*/}/dist/app.js.map > dist/app.js",
-    "js-build-dist": "export NODE_ENV=production;browserify -s ${PWD##*/} -e src/App.js -v -d -t envify -t babelify -t uglifyify -o /tmp/app-${PWD##*/}.js",
-    "js-build-dist-with-maps": "export NODE_ENV=production;browserify -s ${PWD##*/} -e src/App.js -v -d -t envify -t babelify -t uglifyify | exorcist /tmp/app-${PWD##*/}.js.map > /tmp/app-${PWD##*/}.js",
-    "js-min": "uglifyjs /tmp/app-${PWD##*/}.js -m -c --screw-ie8 > dist/app.js",
-    "js-watch": "export NODE_ENV=development;watchify -s ${PWD##*/} -e src/App.js -v -d -t envify -t babelify -o 'exorcist dist/app.js.map > dist/app.js'",
+    "js-build": "export NODE_ENV=development;browserify -s @topazjs/shared -e src/App.js -v -d -t envify -t babelify | exorcist dist/app.js.map -u /@topazjs/shared/dist/app.js.map > dist/app.js",
+    "js-build-dist": "export NODE_ENV=production;browserify -s @topazjs/shared -e src/App.js -v -t envify -t babelify -t uglifyify -o /tmp/app-@topazjs/shared.js",
+    "js-build-dist-with-maps": "export NODE_ENV=production;browserify -s @topazjs/shared -e src/App.js -v -d -t envify -t babelify -t uglifyify | exorcist /tmp/app-@topazjs/shared.js.map > /tmp/app-@topazjs/shared.js",
+    "js-min": "uglifyjs /tmp/app-@topazjs/shared.js -m -c --screw-ie8 > dist/app.js",
+    "js-watch": "export NODE_ENV=development;watchify -s @topazjs/shared -e src/App.js -v -d -t envify -t babelify -o 'exorcist dist/app.js.map > dist/app.js'",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
+    "peerDependencies": {
+        "react": "^16.12.0",
+        "react-dom": "^16.12.0"
+    },
   "dependencies": {
     "@babel/polyfill": "^7.8.3",
     "@babel/runtime": "^7.8.3",
@@ -86,6 +91,11 @@
     "react-test-renderer": "^16.2.0",
     "uglify-js": "^3.4.1",
     "uglifyify": "^5.0.1",
-    "watchify": "^3.11.0"
+    "watchify": "^3.11.0",
+      "webpack": "^4.41.6",
+      "webpack-cli": "^3.3.11",
+      "webpack-command": "^0.5.0",
+      "webpack-dev-server": "^3.10.3",
+      "webpack-merge": "^4.2.2"
   }
 }

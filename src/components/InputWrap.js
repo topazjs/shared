@@ -1,7 +1,6 @@
 'use strict';
 /* @flow */
 
-import { icon } from '@fortawesome/fontawesome-svg-core';
 import React from 'react';
 
 import {
@@ -18,12 +17,11 @@ import styled from 'styled-components';
 import Label from './statics/Label';
 import HelpText from './statics/HelpText';
 import InputIcon from './statics/InputIcon';
-import ErrorCatcher from './ErrorCatcher';
+import { ErrorCatcher } from './ErrorCatcher';
 
 import {
     iconMap,
     standardColorMap,
-    darkerColorMap,
 } from '../info/colors';
 
 export const StyledInputWrap = styled.div`
@@ -171,7 +169,7 @@ export type propsType = {
     icon: ?string,
 };
 
-export default function InputWrap ( props: propsType ) {
+export function InputWrap ( props: propsType ) {
     const {
         required = false,
         showLeftIcon = false,

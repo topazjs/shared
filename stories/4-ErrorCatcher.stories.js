@@ -1,7 +1,7 @@
 'use strict';
 
 import React from 'react';
-import ErrorCatcher, { withErrorCatcher } from '../src/components/ErrorCatcher';
+import { ErrorCatcher, withErrorCatcher } from '../src/components/ErrorCatcher';
 
 export default {
   title: 'Error Catcher HOC and Component',

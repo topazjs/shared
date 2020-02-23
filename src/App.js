@@ -4,7 +4,7 @@
 export * as helpers from './utils';
 export * as Intentions from './info/intentions';
 export * from './info/colors';
-export ErrorCatcher, { withErrorCatcher } from './components/ErrorCatcher';
-export Loader from './components/Loader';
-export Notice from './components/Notice';
-export InputWrap from './components/InputWrap';
+export * as ErrorCatcher from './components/ErrorCatcher';
+export * as Loader from './components/Loader';
+export * as Notice from './components/Notice';
+export * as InputWrap from './components/InputWrap';

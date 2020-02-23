@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { INVALID } from '../../info/intentions';
-import ErrorCatcher from '../ErrorCatcher';
+import { ErrorCatcher } from '../ErrorCatcher';
 import styled from 'styled-components';
 
 import {

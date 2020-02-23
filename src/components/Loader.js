@@ -285,7 +285,7 @@ export type wrapPropsType = {
     message: ?string,
 };
 
-export default class Loader extends PureComponent <wrapPropsType> {
+export class Loader extends PureComponent <wrapPropsType> {
     render () {
         const {
             handleClick,
