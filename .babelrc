@@ -25,6 +25,28 @@
         "@babel/plugin-proposal-class-properties",
         "@babel/plugin-proposal-object-rest-spread",
         ["@babel/plugin-transform-modules-commonjs", { "loose": true }],
-        ["@babel/plugin-transform-runtime", { "corejs": 2, "helpers": false, "regenerator": true }]
-    ]
+        ["@babel/plugin-transform-runtime", { "corejs": 2, "helpers": false, "regenerator": true }],
+        "minify-builtins"
+    ],
+    "env": {
+        "es": {
+            "presets": [
+                [
+                    "@babel/preset-env",
+                    {
+                        "modules": false,
+                        "loose": true
+                    }
+                ]
+            ],
+            "plugins": [
+                [
+                    "@babel/plugin-transform-modules-commonjs",
+                    {
+                        "loose": true
+                    }
+                ]
+            ]
+        }
+    }
 }

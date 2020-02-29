@@ -3,7 +3,7 @@
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
-import InputWrap from '../src/components/InputWrap';
+import { InputWrap } from '../src/components/InputWrap';
 import {
     standardColorMap,
     iconMap,

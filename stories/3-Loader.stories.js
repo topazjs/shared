@@ -1,7 +1,7 @@
 'use strict';
 
 import React, { useState } from 'react';
-import Loader from '../src/components/Loader';
+import { Loader } from '../src/components/Loader';
 
 export default {
   title: 'Loader',

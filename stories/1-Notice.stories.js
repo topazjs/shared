@@ -2,7 +2,7 @@
 /* @flow */
 
 import React from 'react';
-import Notice from '../src/components/Notice';
+import { Notice } from '../src/components/Notice';
 import * as Intentions from '../src/info/intentions';
 
 export default {

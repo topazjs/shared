@@ -1,4 +1,14 @@
+'use strict';
+
+const path = require("path");
+const paths = require("./paths");
+
 module.exports = {
+    'output': {
+        'filename': `app.js`,
+        'path': paths.appBuild,
+        // 'library': `topazjs`,
+    },
     plugins: [],
     resolve: {
         // File extensions. Add others and needed (e.g. scss, json)
@@ -17,6 +27,13 @@ module.exports = {
     },
     module: {
         rules: [
+            {
+                'test': /\.js$/,
+                'exclude': /node_modules/,
+                'use': {
+                    'loader': `babel-loader`,
+                }
+            },
             {
                 test: /\.(png|svg|jpg)$/,
                 use: [ "file-loader" ]
