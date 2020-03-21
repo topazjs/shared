@@ -257,7 +257,7 @@ export type propsType = {
     message: string,
 };
 
-export const LoaderInner = React.memo(( props: propsType ) => {
+export const LoaderInner = ( props: propsType ) => {
     const {
         handleClick,
         message,
@@ -278,7 +278,7 @@ export const LoaderInner = React.memo(( props: propsType ) => {
             </LockNLoaderDiv>
         </LoaderDiv>
     );
-});
+};
 
 export type wrapPropsType = {
     handleClick: ?Function,

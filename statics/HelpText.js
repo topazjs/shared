@@ -2,7 +2,7 @@
 /* @flow */
 
 import React from 'react';
-import { INVALID } from '../../info/intentions';
+import { INVALID } from '../info/intentions';
 import { ErrorCatcher } from '../ErrorCatcher';
 import styled from 'styled-components';
 
@@ -10,7 +10,7 @@ import {
     iconMap,
     standardColorMap,
     darkerColorMap,
-} from '../../info/colors';
+} from '../info/colors';
 
 export const StyledHelpText = styled.p`
     font-style: italic;

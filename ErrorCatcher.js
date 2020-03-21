@@ -8,7 +8,7 @@ import React, {
 import hoistStatics from 'hoist-non-react-statics';
 import styled from 'styled-components';
 import { Notice } from './Notice';
-import { ERROR } from '../info/intentions';
+import { ERROR } from './info/intentions';
 
 export type propsType = {
     children: ?any,

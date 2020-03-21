@@ -10,7 +10,7 @@ import {
 import {
     SUCCESS,
     INVALID,
-} from '../info/intentions';
+} from './info/intentions';
 
 import styled from 'styled-components';
 
@@ -22,7 +22,7 @@ import { ErrorCatcher } from './ErrorCatcher';
 import {
     iconMap,
     standardColorMap,
-} from '../info/colors';
+} from './info/colors';
 
 export const StyledInputWrap = styled.div`
     font-size: 0.5rem;

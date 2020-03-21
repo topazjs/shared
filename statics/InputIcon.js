@@ -11,11 +11,11 @@ import {
 
 import {
     standardColorMap,
-} from '../../info/colors';
+} from '../info/colors';
 
 import {
     PLAIN,
-} from '../../info/intentions';
+} from '../info/intentions';
 
 
 export const StyledIconCSS = css`

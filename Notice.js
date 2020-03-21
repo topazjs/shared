@@ -20,9 +20,9 @@ import {
     iconMap,
     standardColorMap,
     darkerColorMap,
-} from '../info/colors';
+} from './info/colors';
 
-import * as Intentions from '../info/intentions';
+import * as Intentions from './info/intentions';
 
 export const cssInverts = {
     title: type =>
