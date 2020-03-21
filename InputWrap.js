@@ -25,7 +25,7 @@ import {
 } from './info/colors';
 
 export const StyledInputWrap = styled.div`
-    font-size: 0.5rem;
+    font-size: 1.5rem;
     margin-left: 2px;
     margin-right: 2px;
     padding-top: 2px;
