@@ -2,7 +2,7 @@
 /* @flow */
 
 import React from 'react';
-import { ErrorCatcher } from '../ErrorCatcher';
+import ErrorCatcher from '../ErrorCatcher';
 import styled from 'styled-components';
 
 export const Required = styled.strong`

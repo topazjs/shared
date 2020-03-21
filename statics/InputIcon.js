@@ -2,7 +2,7 @@
 /* @flow */
 
 import React from 'react';
-import { ErrorCatcher } from '../ErrorCatcher';
+import ErrorCatcher from '../ErrorCatcher';
 import styled, { css } from 'styled-components';
 
 import {
