@@ -188,7 +188,7 @@ export type propsType = {
     children: ?any,
 };
 
-export function Notice ( props: propsType ) {
+export default function Notice ( props: propsType ) {
     const {
         message,
         title,

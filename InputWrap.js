@@ -17,7 +17,7 @@ import styled from 'styled-components';
 import Label from './statics/Label';
 import HelpText from './statics/HelpText';
 import InputIcon from './statics/InputIcon';
-import { ErrorCatcher } from './ErrorCatcher';
+import ErrorCatcher from './ErrorCatcher';
 
 import {
     iconMap,
@@ -169,7 +169,7 @@ export type propsType = {
     icon: ?string,
 };
 
-export function InputWrap ( props: propsType ) {
+export default function InputWrap ( props: propsType ) {
     const {
         required = false,
         showLeftIcon = false,
