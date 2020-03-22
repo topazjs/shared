@@ -3,6 +3,7 @@
 
 import React from 'react';
 import styled, { css } from 'styled-components';
+import memoize from 'fast-memoize';
 
 import type {
     css as cssType,
@@ -155,7 +156,7 @@ export type getColorsType = ( string, boolean ) => ({
     icon: IconDefinition,
 });
 
-export const getColors: getColorsType = ( type, inverted ) => {
+export const getColors: getColorsType = memoize(( type, inverted ) => {
     let icon = iconMap[ type ];
     let textColor = standardColorMap[ type ];
     let titleCSS = css`
@@ -178,7 +179,7 @@ export const getColors: getColorsType = ( type, inverted ) => {
         titleCSS,
         containerCSS,
     };
-};
+});
 
 export type propsType = {
     inverted: ?boolean,
