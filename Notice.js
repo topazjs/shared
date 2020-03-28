@@ -50,59 +50,47 @@ export type fieldsetType = ({
     children: React$Node | React$Node[]
 }) => React$Node;
 
-export const NoticeFieldset: fieldsetType = React.memo(function NoticeFieldset ({ containerCSS, children, }) {
-    const Fieldset = styled.fieldset`
-        ${containerCSS}
-        max-width: 75%;
-        width: auto;
-        font-family: Operator Mono Medium, Dank mono, Ubuntu mono, helvetica neue, helvetica, arial, monospace;
-    `;
-
-    return (
-        <Fieldset>
-            {children}
-        </Fieldset>
-    );
-});
+export const NoticeFieldset: fieldsetType = styled.fieldset`
+    ${( { containerCSS } ) => containerCSS}
+    max-width: 75%;
+    width: auto;
+    font-family: Operator Mono Medium, Dank mono, Ubuntu mono, helvetica neue, helvetica, arial, monospace;
+`;
 
 export type wrapType = ( {
     children: React$Node|React$Node[]
 } ) => React$Node;
 
-export const NoticeWrap: wrapType = React.memo(function NoticeWrap ({ children }) {
-    const Wrap = styled.div`
-        display: flex;
-        align-items: start;
-        padding: 4px 0;
-    `;
-
-    return (
-        <Wrap>
-            {children}
-        </Wrap>
-    );
-});
+export const NoticeWrap: wrapType = React.memo(styled.div`
+    display: flex;
+    align-items: start;
+    padding: 4px 0;
+`);
 
 export type titleType = ( {
     titleCSS: cssType,
     children: React$Node | React$Node[]
 } ) => React$Node;
 
-export const NoticeTitle: titleType = React.memo(function NoticeTitle ( { titleCSS, children } ) {
-    const Title = styled.legend`
-        ${titleCSS}
-        margin-bottom: 2px;
-        font-size: 36px;
-        font-weight: 700;
-        font-family: Ubuntu, Helvetica neue, Helvetica, Arial, monospace;
-    `;
+export const NoticeTitle: titleType = React.memo(styled.legend`
+    ${({ titleCSS }) => titleCSS}
+    margin-bottom: 2px;
+    font-size: 36px;
+    font-weight: 700;
+    font-family: Ubuntu, Helvetica neue, Helvetica, Arial, monospace;
+`);
 
-    return (
-        <Title>
-            {children}
-        </Title>
-    );
-});
+const IconWrap = styled.div`
+    color: ${({ textColor }) => textColor};
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    font-size: 24px;
+    border-radius: 6px;
+    padding: 4px;
+    margin-right: 3px;
+    margin-left: 3px;
+`;
 
 export type iconWrapType = ( {
     textColor: string,
@@ -110,20 +98,8 @@ export type iconWrapType = ( {
 } ) => React$Node;
 
 export const NoticeIconWrap: iconWrapType = React.memo(function NoticeIconWrap ( { textColor, icon } ) {
-    const IconWrap = styled.div`
-        color: ${textColor};
-        background: transparent;
-        display: flex;
-        flex-direction: column;
-        font-size: 24px;
-        border-radius: 6px;
-        padding: 4px;
-        margin-right: 3px;
-        margin-left: 3px;
-    `;
-
     return (
-        <IconWrap>
+        <IconWrap textColor={textColor}>
             <FontAwesomeIcon icon={icon} />
         </IconWrap>
     );
@@ -134,20 +110,12 @@ export type textType = ( {
     children: React$Node | React$Node[]
 } ) => React$Node;
 
-export const NoticeText: textType = React.memo(function NoticeText ( { textColor, children } ) {
-    const Text = styled.code`
-        color: ${textColor};
-        font-size: 24px;
-        font-style: italic;
-        font-family: Operator Mono Medium, Dank mono, Ubuntu mono, helvetica neue, helvetica, arial, monospace;
-    `;
-
-    return (
-        <Text>
-            {children}
-        </Text>
-    );
-});
+export const NoticeText: textType = React.memo(styled.code`
+    color: ${({ textColor }) => textColor};
+    font-size: 24px;
+    font-style: italic;
+    font-family: Operator Mono Medium, Dank mono, Ubuntu mono, helvetica neue, helvetica, arial, monospace;
+`);
 
 export type getColorsType = ( string, boolean ) => ({
     textColor: string,
