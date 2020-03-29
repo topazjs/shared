@@ -48,53 +48,60 @@ export const PreviousButton = ( props ) => (
 //     </button>
 // );
 
-export function FormButtonGroup ( props ) {
+export function HomeButton ( props ) {
     const {
-        className,
-        disabled,
-        handleReset = () => {},
+        className = ``,
     } = props;
 
     return (
         <div
-            className={`tw-w-full tw-text-center`}
-            key={`buttons-group-wrap-key`}>
-            <Button
+            className={`tw-w-full tw-text-center`}>
+            <Link to={`/`}>
+                <button
+                    className={`tw-mx-auto tw-bg-info tw-text-white ${largeButtonClass} ${buttonClass} ${buttonTextClass} ${className}`}
+                    name={`home-button`}
+                    id={`home-button`}
+                    type={`button`}>
+                    Home
+                </button>
+            </Link>
+        </div>
+    );
+}
+
+export function FormButtonGroup ( props ) {
+    const {
+        className = ``,
+        hidden,
+        handleReset = () => {},
+    } = props;
+
+    const conditionClasses = hidden
+        ? `tw-hidden`
+        : `${largeButtonClass} ${buttonClass} ${buttonTextClass}`;
+
+    return (
+        <div
+            className={`tw-w-full tw-text-center`}>
+            <button
                 key={`submit-button-key`}
-                variant={`primary`}
-                className={`tw-w-1/3 tw-mx-2 ${className}`}
-                disabled={disabled}
+                className={`tw-w-1/3 tw-mx-2 tw-bg-primary tw-text-white ${conditionClasses} ${className}`}
+                disabled={hidden}
                 name={`submit-button`}
                 id={`submit-button`}
                 type={`submit`}>
                 Save
-            </Button>
-            <Button
+            </button>
+            <button
                 key={`reset-button-key`}
-                variant={`secondary`}
-                className={`tw-w-1/3 tw-mx-2 ${className}`}
-                disabled={disabled}
+                className={`tw-w-1/3 tw-mx-2 tw-bg-secondary tw-text-white ${conditionClasses} ${className}`}
+                disabled={hidden}
                 name={`reset-button`}
                 id={`reset-button`}
-                type={`button`}
-                onClick={handleReset}>
+                type={`reset`}
+                onClick={e => handleReset()}>
                 Reset
-            </Button>
-            <div
-                className={`tw-w-full tw-text-center`}
-                key={`home-button-group-wrap-key`}>
-                <Link to={`/home`}>
-                    <Button
-                        key={`home-button-key`}
-                        variant={`info`}
-                        className={`tw-w-1/5 tw-mx-auto ${className}`}
-                        name={`home-button`}
-                        id={`home-button`}
-                        type={`button`}>
-                        Home
-                    </Button>
-                </Link>
-            </div>
+            </button>
         </div>
     )
 }
