@@ -4,6 +4,7 @@ import React, {
     useEffect,
     PureComponent,
     useState,
+    useCallback,
 } from 'react';
 
 import {
@@ -46,7 +47,7 @@ function GenericMenuInner ( { name, options, clickToggler, keyDownToggler } ) {
 function GenericMenu ( props ) {
     const [ opened, toggleOpen ] = useState(false);
 
-    const clickToggler = ( event ) => {
+    const clickToggler = useCallback(( event ) => {
         console.log(`click ${props.name}`);
         if ( event.target === event.currentTarget && event.target.classList.contains(`${props.name}-menu`) ) {
             event.preventDefault();
@@ -56,9 +57,9 @@ function GenericMenu ( props ) {
         else if ( !event.target.classList.contains(`${props.name}-menu-button`) ) {
             toggleOpen(false);
         }
-    };
+    }, [ toggleOpen ]);
 
-    const keyDownToggler = event => {
+    const keyDownToggler = useCallback(event => {
         console.log(`keyd ${props.name}`);
         if ( event.which === 27 ) {
             event.preventDefault();
@@ -66,7 +67,13 @@ function GenericMenu ( props ) {
 
             toggleOpen(false);
         }
-    };
+    }, [ toggleOpen ]);
+
+    const handleButtonClick = useCallback(e => {
+        e.preventDefault();
+        e.stopPropagation();
+        toggleOpen(!opened);
+    }, [ opened, toggleOpen ]);
 
     let menu = null;
     let openClass = ``;
@@ -91,12 +98,9 @@ function GenericMenu ( props ) {
                 className={`${props.name}-menu-button ${buttonClassName} ${opened ? '' : 'tw-rounded-b'}`}
                 title={props.title}
                 aria-hidden="true"
-                onClick={e => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    toggleOpen(!opened);
-                }}
-                role="button">
+                onClick={handleButtonClick}
+                type={`button`}
+                role={`button`}>
 
                 {props.value}
 
