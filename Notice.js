@@ -2,6 +2,9 @@
 /* @flow */
 
 import React from 'react';
+import type {
+    ReactNode
+} from 'react';
 import styled, { css } from 'styled-components';
 import memoize from 'fast-memoize';
 
@@ -52,7 +55,7 @@ export type fieldsetType = ({
 
 export const NoticeFieldset: fieldsetType = styled.fieldset`
     ${( { containerCSS } ) => containerCSS}
-    max-width: 75%;
+    // max-width: 75%;
     width: auto;
     font-family: Operator Mono Medium, Dank mono, Ubuntu mono, helvetica neue, helvetica, arial, monospace;
 `;
@@ -151,7 +154,7 @@ export const getColors: getColorsType = memoize(( type, inverted ) => {
 
 export type propsType = {
     inverted: ?boolean,
-    message: string,
+    message: string|ReactNode,
     type: string,
     title: ?string,
     children: ?any,
