@@ -54,18 +54,15 @@ export function HomeButton ( props ) {
     } = props;
 
     return (
-        <div
-            className={`tw-w-full tw-text-center`}>
-            <Link to={`/`}>
-                <button
-                    className={`tw-mx-auto tw-bg-info tw-text-white ${largeButtonClass} ${buttonClass} ${buttonTextClass} ${className}`}
-                    name={`home-button`}
-                    id={`home-button`}
-                    type={`button`}>
-                    Home
-                </button>
-            </Link>
-        </div>
+        <Link to={`/`}>
+            <button
+                className={`tw-mx-auto tw-bg-info tw-text-white ${largeButtonClass} ${buttonClass} ${buttonTextClass} ${className}`}
+                name={`home-button`}
+                id={`home-button`}
+                type={`button`}>
+                Home
+            </button>
+        </Link>
     );
 }
 
