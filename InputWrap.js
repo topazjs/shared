@@ -167,9 +167,7 @@ export const InputWrapInner = ( props: innerPropsType ) => {
     );
 };
 
-export type propsType = {
-    ...innerPropsType
-};
+export type propsType = innerPropsType;
 
 export default function InputWrap ( props: propsType ) {
     const {
