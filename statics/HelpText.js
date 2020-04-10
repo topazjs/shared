@@ -15,6 +15,7 @@ import {
 export const StyledHelpText = styled.p`
     font-style: italic;
     font-size: 0.75rem;
+    color: ${props => props.color}
 `;
 
 export type propsType = {
@@ -44,7 +45,7 @@ export const HelpTextInner = ( props: propsType ) => {
     return (
         <StyledHelpText
             className={className}
-            style={{ color }}>
+            color={color}>
             {text || ' '}
         </StyledHelpText>
     );
