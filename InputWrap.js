@@ -10,6 +10,7 @@ import {
 import {
     SUCCESS,
     INVALID,
+    PLAIN,
 } from './info/intentions';
 
 import styled from 'styled-components';
@@ -42,10 +43,10 @@ export const StyledInputWrapInner = styled.div`
 export type innerPropsType = {
     children: any,
     error: ?string,
-    notifyIcon: string,
-    stateColor: string,
+    stateColor: ?string,
     inputName: string,
-    helpText: string,
+    helpText: ?string,
+    helpTextClass: ?string,
     labelText: string,
     value: ?(string|boolean|number),
     valid: ?boolean,
@@ -85,11 +86,13 @@ export const InputWrapInner = ( props: innerPropsType ) => {
         hideHelpTextWhenValid,
     } = props;
 
-    const stateColor = valid
-        ? standardColorMap[ SUCCESS ]
+    const state = valid
+        ? SUCCESS
         : value
-            ? standardColorMap[ INVALID ]
-            : ``;
+            ? INVALID
+            : PLAIN;
+
+    const stateColor = standardColorMap[ state ];
 
     const leftIcon = showLeftIcon !== false
         ? (
@@ -97,7 +100,7 @@ export const InputWrapInner = ( props: innerPropsType ) => {
                 key={`left-icon`}
                 color={stateColor}
                 position={`left`}
-                icon={faCircle} />
+                icon={iconMap[ state ]} />
         )
         : null;
 
@@ -167,9 +170,7 @@ export const InputWrapInner = ( props: innerPropsType ) => {
     );
 };
 
-export type propsType = {
-    ...innerPropsType
-};
+export type propsType = innerPropsType;
 
 export default function InputWrap ( props: propsType ) {
     const {
