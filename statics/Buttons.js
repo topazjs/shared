@@ -60,7 +60,7 @@ export function HomeButton ( props ) {
                 name={`home-button`}
                 id={`home-button`}
                 type={`button`}>
-                Home
+                <i className={`fa fa-home`} />
             </button>
         </Link>
     );
