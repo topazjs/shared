@@ -28,12 +28,15 @@ export const StyledInputWrap = styled.div`
     font-size: 1.5rem;
     margin-left: 2px;
     margin-right: 2px;
-    padding-top: 2px;
-    padding-bottom: 2px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    width: ${props => props.width || 'auto'}
 `;
 
 export const StyledInputWrapInner = styled.div`
-    margin-bottom: 3px;
+    margin-bottom: 4px;
 `;
 
 export type innerPropsType = {
@@ -141,7 +144,7 @@ export const InputWrapInner = ( props: innerPropsType ) => {
 
     return (
         <StyledInputWrap
-            style={{ width }}
+            width={width}
             className={wrapClass}>
 
             <StyledInputWrapInner
