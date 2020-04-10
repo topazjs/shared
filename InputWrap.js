@@ -25,7 +25,7 @@ import {
     standardColorMap,
 } from './info/colors';
 
-export const StyledInputWrap = styled.div`
+const wrapStyles = `
     font-size: 1.5rem;
     margin-left: 2px;
     margin-right: 2px;
@@ -33,7 +33,11 @@ export const StyledInputWrap = styled.div`
     padding-bottom: 4px;
     margin-top: 8px;
     margin-bottom: 8px;
-    width: ${props => props.width || 'auto'}
+`;
+
+export const StyledInputWrap = styled.div`
+    ${props => props.ignoreWrapStyles ? '' : wrapStyles}
+    ${props => props.width ? 'width: ' + props.width : ''}
 `;
 
 export const StyledInputWrapInner = styled.div`
@@ -61,6 +65,7 @@ export type innerPropsType = {
     labelClass: ?string,
     hideHelpText: ?boolean,
     hideHelpTextWhenValid: ?boolean,
+    ignoreWrapStyles: ?boolean,
 };
 
 export const InputWrapInner = ( props: innerPropsType ) => {
@@ -84,6 +89,7 @@ export const InputWrapInner = ( props: innerPropsType ) => {
         labelClass,
         hideHelpText,
         hideHelpTextWhenValid,
+        ignoreWrapStyles,
     } = props;
 
     const state = valid
@@ -148,6 +154,7 @@ export const InputWrapInner = ( props: innerPropsType ) => {
     return (
         <StyledInputWrap
             width={width}
+            ignoreWrapStyles={!!wrapClass || ignoreWrapStyles}
             className={wrapClass}>
 
             <StyledInputWrapInner
