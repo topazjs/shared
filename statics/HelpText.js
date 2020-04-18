@@ -44,6 +44,7 @@ export const HelpTextInner = ( props: propsType ) => {
 
     return (
         <StyledHelpText
+            aria-label={text}
             className={className}
             color={color}>
             {text || ' '}

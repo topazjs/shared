@@ -41,6 +41,7 @@ export const LabelInner = ( props: propsType ) => {
 
     return (
         <StyledLabel
+            aria-label={text}
             htmlFor={inputName}
             className={className}>
             {text} {children}
