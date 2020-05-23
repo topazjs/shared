@@ -153,7 +153,7 @@ export type propsType = {
     children: ?any,
 };
 
-export default React.memo(function Notice ( props: propsType ) {
+export default function Notice ( props: propsType ) {
     const {
         message,
         title,
@@ -195,4 +195,4 @@ export default React.memo(function Notice ( props: propsType ) {
             </div>
         </NoticeFieldset>
     );
-});
+}
