@@ -7,6 +7,10 @@ import React, {
 
 import styled, { css } from 'styled-components';
 
+import type {
+    StyledComponent,
+} from 'styled-components';
+
 export const bigSqrAnimationCss = css`
 @-webkit-keyframes bigSqrShrink {
     0% {
@@ -136,7 +140,7 @@ export const drop2AnimationCss = css`
 }
 `;
 
-export const LoaderDiv = styled.div`
+export const LoaderDiv: (() => StyledComponent) = React.memo(styled.div`
     will-change: opacity;
     -webkit-transform: translateZ(0);
     transform: translateZ(0);
@@ -162,9 +166,9 @@ export const LoaderDiv = styled.div`
         height: 100%;
         content: '';
     }
-`;
+`);
 
-export const LockNLoaderDiv = styled.div`
+export const LockNLoaderDiv: (() => StyledComponent) = React.memo(styled.div`
     position: absolute;
     display: inline-block;
     line-height: 16px;
@@ -176,9 +180,9 @@ export const LockNLoaderDiv = styled.div`
     text-align: center;
     z-index: 5;
     color: #2B547E;
-`;
+`);
 
-export const BigSqrDiv = styled.div`
+export const BigSqrDiv: (() => StyledComponent) = React.memo(styled.div`
     will-change: transform;
     position: relative;
     display: inline-block;
@@ -191,7 +195,7 @@ export const BigSqrDiv = styled.div`
     animation: bigSqrShrink 1s linear infinite;
     
     ${bigSqrAnimationCss}
-`;
+`);
 
 export const SquareCss = css`
     position: absolute;
@@ -200,14 +204,14 @@ export const SquareCss = css`
     background-color: #2B547E;
 `;
 
-export const FirstSquareDiv = styled.div`
+export const FirstSquareDiv: (() => StyledComponent) = React.memo(styled.div`
     ${SquareCss}
     
     left: 0;
     top: 20px;
-`;
+`);
 
-export const SecondSquareDiv = styled.div`
+export const SecondSquareDiv: (() => StyledComponent) = React.memo(styled.div`
     ${SquareCss}
     
     will-change: transform;
@@ -217,9 +221,9 @@ export const SecondSquareDiv = styled.div`
     animation: drop2 1s linear infinite;
     
     ${drop2AnimationCss}
-`;
+`);
 
-export const ThirdSquareDiv = styled.div`
+export const ThirdSquareDiv: (() => StyledComponent) = React.memo(styled.div`
     ${SquareCss}
     
     will-change: transform;
@@ -229,9 +233,9 @@ export const ThirdSquareDiv = styled.div`
     animation: drop3 1s linear infinite;
     
     ${drop3AnimationCss}
-`;
+`);
 
-export const FourthSquareDiv = styled.div`
+export const FourthSquareDiv: (() => StyledComponent) = React.memo(styled.div`
     ${SquareCss}
     
     will-change: transform;
@@ -241,23 +245,18 @@ export const FourthSquareDiv = styled.div`
     animation: drop4 1s linear infinite;
     
     ${drop4AnimationCss}
-`;
+`);
 
-export const Text = styled.div`
+export const Text: (() => StyledComponent) = React.memo(styled.div`
     line-height: 16px;
     font-family: "Roboto", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", "Helvetica", "Tahoma", "Arial", sans-serif;
     color: #2B547E;
     display: block;
     margin: 10px auto;
     padding: 3px;
-`;
+`);
 
-export type propsType = {
-    handleClick: Function,
-    message: string,
-};
-
-export const bigSquare = (
+export const bigSquare: StyledComponent = (
     <BigSqrDiv key={`loader-sqr-key`}>
         <FirstSquareDiv key={`loader-key-first`} />
         <SecondSquareDiv key={`loader-key-second`} />
@@ -265,6 +264,11 @@ export const bigSquare = (
         <FourthSquareDiv key={`loader-key-fourth`} />
     </BigSqrDiv>
 );
+
+export type propsType = {
+    handleClick: Function,
+    message: string,
+};
 
 export const LoaderInner = ( props: propsType ) => {
     const {
