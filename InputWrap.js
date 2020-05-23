@@ -36,6 +36,8 @@ export const StyledInputWrap = React.memo(styled.div`
 `);
 
 export const StyledInputWrapInner = React.memo(styled.div`
+    padding-right: ${props => props.paddingRight || 'auto'}
+    padding-left: ${props => props.paddingLeft || 'auto'}
     margin-bottom: 4px;
 `);
 
@@ -149,7 +151,8 @@ export const InputWrapInner = ( props: innerPropsType ) => {
 
             <StyledInputWrapInner
                 key={`main-key`}
-                style={innerStyles}>
+                paddingLeft={innerStyles.paddingLeft}
+                paddingRight={innerStyles.paddingRight}>
 
                 {!labelAfterInput && labelEl}
 

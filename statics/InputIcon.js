@@ -5,6 +5,10 @@ import React from 'react';
 import ErrorCatcher from '../ErrorCatcher';
 import styled, { css } from 'styled-components';
 
+import type {
+    StyledComponent,
+} from 'styled-components';
+
 import {
     FontAwesomeIcon,
 } from '@fortawesome/react-fontawesome'
@@ -16,7 +20,6 @@ import {
 import {
     PLAIN,
 } from '../info/intentions';
-
 
 export const StyledIconCSS = css`
     pointer-events: none;
@@ -32,39 +35,46 @@ export const StyledIconCSS = css`
     height: 80%;
 `;
 
-
-
-export type propsType = {
-    icon: string,
+export type iconWrapType = ({
     position: string,
     color: string,
+    children: React$Component<FontAwesomeIcon>,
+}) => StyledComponent;
+
+export const IconWrap: iconWrapType = React.memo(styled.div`
+    ${StyledIconCSS}
+    ${props => props.position}: 0;
+    color: ${props => standardColorMap[ props.color ]}
+`);
+
+export type innerPropsType = {
+    position: string,
+    color: string,
+    icon: ?string,
 };
 
-export const InputIconInner = React.memo(( props: propsType ) => {
+export const InputIconInner = ( props: innerPropsType ) => {
     const {
-        position,
-        icon,
         color,
+        icon,
+        position,
     } = props;
 
-    const IconWrap = styled.div`
-        ${StyledIconCSS}
-        ${position}: 0;
-        color: ${standardColorMap[ color ]}
-    `;
-
     return (
-        <IconWrap>
-            <FontAwesomeIcon icon={icon} />
+        <IconWrap
+            color={color}
+            position={position}>
+            <FontAwesomeIcon
+                icon={icon} />
         </IconWrap>
     );
-});
+};
 
 export type wrapPropsType = {
     icon: string,
     position: ?string,
     color: ?string,
-};;
+};
 
 export default function InputIcon ( props: wrapPropsType ) {
     const {
@@ -77,9 +87,8 @@ export default function InputIcon ( props: wrapPropsType ) {
         <ErrorCatcher>
             <InputIconInner
                 position={position}
-                icon={icon}
                 color={color}
-            />
+                icon={icon} />
         </ErrorCatcher>
     );
 }
