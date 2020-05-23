@@ -14,27 +14,48 @@ import {
 
 import styled from 'styled-components';
 
-import Label from './statics/Label';
-import HelpText from './statics/HelpText';
-import InputIcon from './statics/InputIcon';
-import ErrorCatcher from './ErrorCatcher';
+import type {
+    StyledComponent,
+} from 'styled-components';
+
+import { Label } from './statics/Label';
+import { HelpText } from './statics/HelpText';
+import { InputIcon } from './statics/InputIcon';
+import { ErrorCatcher } from './ErrorCatcher';
 
 import {
     iconMap,
     standardColorMap,
 } from './info/colors';
 
-export const StyledInputWrap = styled.div`
+export type styledInputWrapType = ({
+    width: ?string,
+    children: React$Node[],
+    className: string,
+}) => StyledComponent;
+
+export const StyledInputWrap: styledInputWrapType = React.memo(styled.div`
     font-size: 1.5rem;
     margin-left: 2px;
     margin-right: 2px;
-    padding-top: 2px;
-    padding-bottom: 2px;
-`;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    width: ${props => props.width || 'auto'}
+`);
 
-export const StyledInputWrapInner = styled.div`
-    margin-bottom: 3px;
-`;
+export type styledInputWrapInnerType = ( {
+    paddingLeft: string,
+    paddingRight: string,
+    children: React$Node[],
+} ) => StyledComponent;
+
+export const StyledInputWrapInner: styledInputWrapInnerType = React.memo(styled.div`
+    padding-left: ${props => props.paddingLeft || 'auto'}
+    padding-right: ${props => props.paddingRight || 'auto'}
+    margin-bottom: 4px;
+`);
 
 export type innerPropsType = {
     children: any,
@@ -44,11 +65,19 @@ export type innerPropsType = {
     inputName: string,
     helpText: string,
     labelText: string,
-    getOptions: ?Func,
     value: ?(string|boolean|number),
     valid: ?boolean,
     invalid: ?boolean,
     icon: ?string,
+    required: ?boolean,
+    showLeftIcon: ?boolean,
+    showRightIcon: ?boolean,
+    labelAfterInput: ?boolean,
+    wrapClass: ?string,
+    width: ?string|number,
+    labelClass: ?string,
+    hideHelpText: ?boolean,
+    hideHelpTextWhenValid: ?boolean,
 };
 
 export const InputWrapInner = ( props: innerPropsType ) => {
@@ -58,6 +87,7 @@ export const InputWrapInner = ( props: innerPropsType ) => {
         touched,
         inputName,
         helpText,
+        helpTextClass = ``,
         labelText,
         value,
         valid,
@@ -113,6 +143,7 @@ export const InputWrapInner = ( props: innerPropsType ) => {
         helpTextEl = (
             <div key={`help-text-key`}>
                 <HelpText
+                    className={helpTextClass}
                     text={helpText || error}
                     hideWhenValid={hideHelpTextWhenValid}
                     invalid={invalid && touched} />
@@ -120,23 +151,22 @@ export const InputWrapInner = ( props: innerPropsType ) => {
         );
     }
 
-    const innerStyles = {
-        'paddingLeft': leftIcon
-            ? 4
-            : ``,
-        'paddingRight': rightIcon
-            ? 4
-            : ``,
-    };
+    const innerPaddingLeft = leftIcon
+        ? `4px`
+        : ``;
+    const innerPaddingRight = rightIcon
+        ? `4px`
+        : ``;
 
     return (
         <StyledInputWrap
-            style={{ width }}
+            width={width}
             className={wrapClass}>
 
             <StyledInputWrapInner
                 key={`main-key`}
-                style={innerStyles}>
+                paddingLeft={innerPaddingLeft}
+                paddingRight={innerPaddingRight}>
 
                 {!labelAfterInput && labelEl}
 
@@ -154,22 +184,9 @@ export const InputWrapInner = ( props: innerPropsType ) => {
     );
 };
 
-export type propsType = {
-    children: any,
-    error: ?string,
-    notifyIcon: string,
-    stateColor: string,
-    inputName: string,
-    helpText: string,
-    labelText: string,
-    getOptions: ?Function,
-    value: ?(string | boolean | number),
-    valid: ?boolean,
-    invalid: ?boolean,
-    icon: ?string,
-};
+export type propsType = innerPropsType;
 
-export default function InputWrap ( props: propsType ) {
+export function InputWrap ( props: propsType ) {
     const {
         required = false,
         showLeftIcon = false,
@@ -193,7 +210,7 @@ export default function InputWrap ( props: propsType ) {
                 hideHelpText={hideHelpText}
                 hideHelpTextWhenValid={hideHelpTextWhenValid}
                 wrapClass={wrapClass}
-                width={width}
+                width={width > 0 ? `${width}px` : width}
                 labelClass={labelClass} />
         </ErrorCatcher>
     );

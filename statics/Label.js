@@ -2,19 +2,31 @@
 /* @flow */
 
 import React from 'react';
-import ErrorCatcher from '../ErrorCatcher';
+import { ErrorCatcher } from '../ErrorCatcher';
 import styled from 'styled-components';
 
-export const Required = styled.strong`
+import type {
+    StyledComponent,
+} from 'styled-components';
+
+export type styledReqType = ( {
+    children: string,
+} ) => StyledComponent;
+
+export const Required: styledReqType = React.memo(styled.strong`
     color: #F66D9B;
     text-align: right;
-`;
+`);
 
-export const requiredStar = (
+export const requiredStar: React$Node = (
     <Required>*</Required>
 );
 
-export const StyledLabel = styled.label`
+export type styledLabelType = ({
+    children: React$Node[],
+}) => StyledComponent;
+
+export const StyledLabel: styledLabelType = React.memo(styled.label`
     display: block;
     text-transform: uppercase;
     letter-spacing: 0.025em;
@@ -22,7 +34,7 @@ export const StyledLabel = styled.label`
     font-weight: 700;
     font-size: 0.75rem;
     margin-bottom: 2px;
-`;
+`);
 
 export type propsType = {
     text: string,
@@ -50,7 +62,7 @@ export const LabelInner = ( props: propsType ) => {
 
 export type wrapPropsType = propsType;
 
-export default function Label ( props: wrapPropsType ) {
+export function Label ( props: wrapPropsType ) {
     const {
         text = ``,
         className = ``,
