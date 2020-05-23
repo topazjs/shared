@@ -14,6 +14,10 @@ import {
 
 import styled from 'styled-components';
 
+import type {
+    StyledComponent,
+} from 'styled-components';
+
 import Label from './statics/Label';
 import HelpText from './statics/HelpText';
 import InputIcon from './statics/InputIcon';
@@ -24,7 +28,13 @@ import {
     standardColorMap,
 } from './info/colors';
 
-export const StyledInputWrap = React.memo(styled.div`
+export type styledInputWrapType = ({
+    width: ?string,
+    children: React$Node[],
+    className: string,
+}) => StyledComponent;
+
+export const StyledInputWrap: styledInputWrapType = React.memo(styled.div`
     font-size: 1.5rem;
     margin-left: 2px;
     margin-right: 2px;
@@ -35,7 +45,13 @@ export const StyledInputWrap = React.memo(styled.div`
     width: ${props => props.width || 'auto'}
 `);
 
-export const StyledInputWrapInner = React.memo(styled.div`
+export type styledInputWrapInnerType = ( {
+    paddingLeft: ?string,
+    paddingRight: ?string,
+    children: React$Node[],
+} ) => StyledComponent;
+
+export const StyledInputWrapInner: styledInputWrapInnerType = React.memo(styled.div`
     padding-right: ${props => props.paddingRight || 'auto'}
     padding-left: ${props => props.paddingLeft || 'auto'}
     margin-bottom: 4px;
@@ -135,14 +151,12 @@ export const InputWrapInner = ( props: innerPropsType ) => {
         );
     }
 
-    const innerStyles = {
-        'paddingLeft': leftIcon
-            ? 4
-            : ``,
-        'paddingRight': rightIcon
-            ? 4
-            : ``,
-    };
+    const innerPaddingLeft = leftIcon
+        ? `4px`
+        : ``;
+    const innerPaddingRight = rightIcon
+        ? `4px`
+        : ``;
 
     return (
         <StyledInputWrap
@@ -151,8 +165,8 @@ export const InputWrapInner = ( props: innerPropsType ) => {
 
             <StyledInputWrapInner
                 key={`main-key`}
-                paddingLeft={innerStyles.paddingLeft}
-                paddingRight={innerStyles.paddingRight}>
+                paddingLeft={innerPaddingLeft}
+                paddingRight={innerPaddingRight}>
 
                 {!labelAfterInput && labelEl}
 
@@ -172,7 +186,7 @@ export const InputWrapInner = ( props: innerPropsType ) => {
 
 export type propsType = innerPropsType;
 
-export default function InputWrap ( props: propsType ) {
+export function InputWrap ( props: propsType ) {
     const {
         required = false,
         showLeftIcon = false,
@@ -196,7 +210,7 @@ export default function InputWrap ( props: propsType ) {
                 hideHelpText={hideHelpText}
                 hideHelpTextWhenValid={hideHelpTextWhenValid}
                 wrapClass={wrapClass}
-                width={width}
+                width={width > 0 ? `${width}px` : width}
                 labelClass={labelClass} />
         </ErrorCatcher>
     );

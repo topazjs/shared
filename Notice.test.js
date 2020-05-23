@@ -1,15 +1,15 @@
 'use strict';
 
 import React from "react";
+
 import {
     render,
     unmountComponentAtNode
 } from "react-dom";
+
 import { act } from "react-dom/test-utils";
-
+import { Notice } from './Notice';
 import * as Intentions from './intentions';
-
-import Notice from './Notice';
 
 let container = null;
 beforeEach(() => {
