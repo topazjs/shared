@@ -42,7 +42,7 @@ export type propsType = {
     text: ?string
 };
 
-export class Tag extends PureComponent<propsType> {
+export default class Tag extends PureComponent<propsType> {
     static defaultClasses = {
         'tag': `tag tw-flex tw-items-center`,
         'text': `tag__text tw-mx-1 tw-text-md`,

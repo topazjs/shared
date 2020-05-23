@@ -28,12 +28,15 @@ export const StyledInputWrap = React.memo(styled.div`
     font-size: 1.5rem;
     margin-left: 2px;
     margin-right: 2px;
-    padding-top: 2px;
-    padding-bottom: 2px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    width: ${props => props.width || 'auto'}
 `);
 
 export const StyledInputWrapInner = React.memo(styled.div`
-    margin-bottom: 3px;
+    margin-bottom: 4px;
 `);
 
 export type innerPropsType = {
@@ -44,11 +47,19 @@ export type innerPropsType = {
     inputName: string,
     helpText: string,
     labelText: string,
-    getOptions: ?Func,
     value: ?(string|boolean|number),
     valid: ?boolean,
     invalid: ?boolean,
     icon: ?string,
+    required: ?boolean,
+    showLeftIcon: ?boolean,
+    showRightIcon: ?boolean,
+    labelAfterInput: ?boolean,
+    wrapClass: ?string,
+    width: ?string|number,
+    labelClass: ?string,
+    hideHelpText: ?boolean,
+    hideHelpTextWhenValid: ?boolean,
 };
 
 export const InputWrapInner = ( props: innerPropsType ) => {
@@ -58,6 +69,7 @@ export const InputWrapInner = ( props: innerPropsType ) => {
         touched,
         inputName,
         helpText,
+        helpTextClass = ``,
         labelText,
         value,
         valid,
@@ -113,6 +125,7 @@ export const InputWrapInner = ( props: innerPropsType ) => {
         helpTextEl = (
             <div key={`help-text-key`}>
                 <HelpText
+                    className={helpTextClass}
                     text={helpText || error}
                     hideWhenValid={hideHelpTextWhenValid}
                     invalid={invalid && touched} />
@@ -131,7 +144,7 @@ export const InputWrapInner = ( props: innerPropsType ) => {
 
     return (
         <StyledInputWrap
-            style={{ width }}
+            width={width}
             className={wrapClass}>
 
             <StyledInputWrapInner
@@ -154,20 +167,7 @@ export const InputWrapInner = ( props: innerPropsType ) => {
     );
 };
 
-export type propsType = {
-    children: any,
-    error: ?string,
-    notifyIcon: string,
-    stateColor: string,
-    inputName: string,
-    helpText: string,
-    labelText: string,
-    getOptions: ?Function,
-    value: ?(string | boolean | number),
-    valid: ?boolean,
-    invalid: ?boolean,
-    icon: ?string,
-};
+export type propsType = innerPropsType;
 
 export default function InputWrap ( props: propsType ) {
     const {
