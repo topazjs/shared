@@ -46,14 +46,14 @@ export const StyledInputWrap: styledInputWrapType = React.memo(styled.div`
 `);
 
 export type styledInputWrapInnerType = ( {
-    paddingLeft: string,
-    paddingRight: string,
+    paddingLeft: ?string,
+    paddingRight: ?string,
     children: React$Node[],
 } ) => StyledComponent;
 
 export const StyledInputWrapInner: styledInputWrapInnerType = React.memo(styled.div`
-    padding-left: ${props => props.paddingLeft || 'auto'}
     padding-right: ${props => props.paddingRight || 'auto'}
+    padding-left: ${props => props.paddingLeft || 'auto'}
     margin-bottom: 4px;
 `);
 

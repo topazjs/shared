@@ -10,6 +10,10 @@ import styled, {
     StyledComponent,
 } from 'styled-components';
 
+import type {
+    StyledComponent,
+} from 'styled-components';
+
 export const bigSqrAnimationCss = css`
 @-webkit-keyframes bigSqrShrink {
     0% {

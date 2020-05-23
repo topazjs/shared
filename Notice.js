@@ -2,11 +2,9 @@
 /* @flow */
 
 import React from 'react';
-
 import type {
     ReactNode
 } from 'react';
-
 import styled, { css } from 'styled-components';
 import memoize from 'fast-memoize';
 
@@ -27,9 +25,9 @@ import {
     iconMap,
     standardColorMap,
     darkerColorMap,
-} from './info/colors';
+} from './colors';
 
-import * as Intentions from './info/intentions';
+import * as Intentions from './intentions';
 
 export const cssInverts = {
     "title": memoize(type =>
