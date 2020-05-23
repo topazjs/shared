@@ -289,11 +289,11 @@ export const LoaderInner = ( props: propsType ) => {
 };
 
 export type wrapPropsType = {
-    handleClick: ?Function,
+    handleClick: ?(MouseEvent => {}),
     message: ?string,
 };
 
-export default class Loader extends PureComponent <wrapPropsType> {
+export class Loader extends PureComponent <wrapPropsType> {
     render () {
         const {
             handleClick,
@@ -313,5 +313,5 @@ export default class Loader extends PureComponent <wrapPropsType> {
 
     handleClick = typeof this.props.handleClick === `function`
         ? this.props.handleClick
-        : ( event: Event ) => {};
+        : ( event: MouseEvent ) => {};
 }

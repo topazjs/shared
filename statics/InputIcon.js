@@ -2,7 +2,7 @@
 /* @flow */
 
 import React from 'react';
-import ErrorCatcher from '../ErrorCatcher';
+import { ErrorCatcher } from '../ErrorCatcher';
 import styled, { css } from 'styled-components';
 
 import type {
@@ -76,7 +76,7 @@ export type wrapPropsType = {
     color: ?string,
 };
 
-export default function InputIcon ( props: wrapPropsType ) {
+export function InputIcon ( props: wrapPropsType ) {
     const {
         position = `left`,
         icon = ``,

@@ -6,17 +6,25 @@ import { INVALID } from '../info/intentions';
 import ErrorCatcher from '../ErrorCatcher';
 import styled from 'styled-components';
 
+import type {
+    StyledComponent,
+} from 'styled-components';
+
 import {
-    iconMap,
     standardColorMap,
-    darkerColorMap,
 } from '../info/colors';
 
-export const StyledHelpText = styled.p`
+export type styledHelpTextType = ({
+    color: string,
+    className: string,
+    children: string,
+}) => StyledComponent;
+
+export const StyledHelpText: styledHelpTextType = React.memo(styled.p`
     font-style: italic;
     font-size: 0.75rem;
     color: ${props => props.color}
-`;
+`);
 
 export type propsType = {
     text: string,
@@ -59,7 +67,7 @@ export type wrapPropsType = {
     invalid: boolean,
 };
 
-export default function HelpText ( props: wrapPropsType ) {
+export function HelpText ( props: wrapPropsType ) {
     const {
         text = ``,
         className = ``,

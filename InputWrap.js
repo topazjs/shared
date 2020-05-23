@@ -18,10 +18,10 @@ import type {
     StyledComponent,
 } from 'styled-components';
 
-import Label from './statics/Label';
-import HelpText from './statics/HelpText';
-import InputIcon from './statics/InputIcon';
-import ErrorCatcher from './ErrorCatcher';
+import { Label } from './statics/Label';
+import { HelpText } from './statics/HelpText';
+import { InputIcon } from './statics/InputIcon';
+import { ErrorCatcher } from './ErrorCatcher';
 
 import {
     iconMap,

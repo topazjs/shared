@@ -2,7 +2,7 @@
 /* @flow */
 
 import React from 'react';
-import ErrorCatcher from '../ErrorCatcher';
+import { ErrorCatcher } from '../ErrorCatcher';
 import styled from 'styled-components';
 
 import type {
@@ -62,7 +62,7 @@ export const LabelInner = ( props: propsType ) => {
 
 export type wrapPropsType = propsType;
 
-export default function Label ( props: wrapPropsType ) {
+export function Label ( props: wrapPropsType ) {
     const {
         text = ``,
         className = ``,

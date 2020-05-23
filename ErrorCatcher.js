@@ -28,7 +28,7 @@ export const ErrorDetails = styled.details`
     font-family: Operator Mono Medium, Dank mono, Ubuntu mono, helvetica neue, helvetica, arial, monospace;
 `;
 
-export default class ErrorCatcher extends PureComponent<propsType, stateType> {
+export class ErrorCatcher extends PureComponent<propsType, stateType> {
     state = {
         'error': null,
         'info': null,

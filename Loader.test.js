@@ -7,9 +7,8 @@ import {
     unmountComponentAtNode,
 } from "react-dom";
 
+import { Loader } from './Loader';
 import { act } from "react-dom/test-utils";
-
-import Loader from './Loader';
 
 let container = null;
 beforeEach(() => {
