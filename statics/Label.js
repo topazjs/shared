@@ -3,9 +3,7 @@
 
 import React from 'react';
 import { ErrorCatcher } from '../ErrorCatcher';
-import styled from 'styled-components';
-
-import type {
+import styled, {
     StyledComponent,
 } from 'styled-components';
 

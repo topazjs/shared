@@ -1,33 +1,28 @@
 'use strict';
 /* @flow */
 
-import React from 'react';
-import type {
+import React, {
     ReactNode
 } from 'react';
-import styled, { css } from 'styled-components';
-import memoize from 'fast-memoize';
 
-import type {
+import styled, {
+    css,
     css as cssType,
-    StyledComponent,
 } from 'styled-components';
+
+import memoize from 'fast-memoize';
 
 import {
     FontAwesomeIcon,
 } from '@fortawesome/react-fontawesome';
 
-import type {
-    IconDefinition,
-} from '@fortawesome/fontawesome-common-types';
-
 import {
     iconMap,
     standardColorMap,
     darkerColorMap,
-} from './colors';
+} from './info/colors';
 
-import * as Intentions from './intentions';
+import * as Intentions from './info/intentions';
 
 export const cssInverts = {
     "title": memoize(type =>
