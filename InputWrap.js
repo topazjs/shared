@@ -24,17 +24,17 @@ import {
     standardColorMap,
 } from './info/colors';
 
-export const StyledInputWrap = styled.div`
+export const StyledInputWrap = React.memo(styled.div`
     font-size: 1.5rem;
     margin-left: 2px;
     margin-right: 2px;
     padding-top: 2px;
     padding-bottom: 2px;
-`;
+`);
 
-export const StyledInputWrapInner = styled.div`
+export const StyledInputWrapInner = React.memo(styled.div`
     margin-bottom: 3px;
-`;
+`);
 
 export type innerPropsType = {
     children: any,

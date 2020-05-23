@@ -257,6 +257,15 @@ export type propsType = {
     message: string,
 };
 
+export const bigSquare = (
+    <BigSqrDiv key={`loader-sqr-key`}>
+        <FirstSquareDiv key={`loader-key-first`} />
+        <SecondSquareDiv key={`loader-key-second`} />
+        <ThirdSquareDiv key={`loader-key-third`} />
+        <FourthSquareDiv key={`loader-key-fourth`} />
+    </BigSqrDiv>
+);
+
 export const LoaderInner = ( props: propsType ) => {
     const {
         handleClick,
@@ -266,12 +275,7 @@ export const LoaderInner = ( props: propsType ) => {
     return (
         <LoaderDiv className={`lock-n-loader`} onClick={handleClick}>
             <LockNLoaderDiv>
-                <BigSqrDiv key={`loader-sqr-key`}>
-                    <FirstSquareDiv key={`loader-key-first`} />
-                    <SecondSquareDiv key={`loader-key-second`} />
-                    <ThirdSquareDiv key={`loader-key-third`} />
-                    <FourthSquareDiv key={`loader-key-fourth`} />
-                </BigSqrDiv>
+                {bigSquare}
                 <Text key={`loader-text-key`}>
                     {message}
                 </Text>

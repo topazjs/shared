@@ -7,6 +7,7 @@ import memoize from 'fast-memoize';
 
 import type {
     css as cssType,
+    StyledComponent,
 } from 'styled-components';
 
 import {
@@ -21,133 +22,93 @@ import {
     iconMap,
     standardColorMap,
     darkerColorMap,
-} from './info/colors';
+} from './colors';
 
-import * as Intentions from './info/intentions';
+import * as Intentions from './intentions';
 
 export const cssInverts = {
-    title: type =>
+    "title": memoize(type =>
         css`
             color: ${standardColorMap.LIGHT};
             text-shadow: 1px 1px 0 ${darkerColorMap[ type ]}, -1px -1px 0 ${darkerColorMap[ type ]}, 
                 1px 0px 1px ${darkerColorMap[ type ]}, 0px -1px 1px ${darkerColorMap[ type ]}, 
                 -1px 1px 0px ${darkerColorMap[ type ]}, 1px -1px 0px ${darkerColorMap[ type ]};
-        `,
-    text: type =>
+        `),
+    "text": memoize(() =>
         css`
             color: ${darkerColorMap.LIGHT};
-        `,
-    container: type =>
+        `),
+    "container": memoize(type =>
         css`
             background-color: ${standardColorMap[ type ]};
             border-color: ${darkerColorMap[ type ]};
             color: ${standardColorMap.LIGHT};
-        `,
+        `),
 };
 
 export type fieldsetType = ({
     containerCSS: cssType,
-    children: React$Node | React$Node[]
-}) => React$Node;
+    children: React$Node[]
+}) => StyledComponent;
 
-export const NoticeFieldset: fieldsetType = React.memo(function NoticeFieldset ({ containerCSS, children, }) {
-    const Fieldset = styled.fieldset`
-        ${containerCSS}
-        max-width: 75%;
-        width: auto;
-        font-family: Operator Mono Medium, Dank mono, Ubuntu mono, helvetica neue, helvetica, arial, monospace;
-    `;
-
-    return (
-        <Fieldset>
-            {children}
-        </Fieldset>
-    );
-});
+export const NoticeFieldset: fieldsetType = React.memo(styled.fieldset`
+    ${( { containerCSS } ) => containerCSS}
+    max-width: 75%;
+    width: auto;
+    font-family: Operator Mono Medium, Dank mono, Ubuntu mono, helvetica neue, helvetica, arial, monospace;
+`);
 
 export type wrapType = ( {
-    children: React$Node|React$Node[]
-} ) => React$Node;
+    children: React$Node[]
+} ) => StyledComponent;
 
-export const NoticeWrap: wrapType = React.memo(function NoticeWrap ({ children }) {
-    const Wrap = styled.div`
-        display: flex;
-        align-items: start;
-        padding: 4px 0;
-    `;
-
-    return (
-        <Wrap>
-            {children}
-        </Wrap>
-    );
-});
+export const NoticeWrap: wrapType = React.memo(styled.div`
+    display: flex;
+    align-items: start;
+    padding: 4px 0;
+`);
 
 export type titleType = ( {
     titleCSS: cssType,
-    children: React$Node | React$Node[]
-} ) => React$Node;
+    children: string,
+} ) => StyledComponent;
 
-export const NoticeTitle: titleType = React.memo(function NoticeTitle ( { titleCSS, children } ) {
-    const Title = styled.legend`
-        ${titleCSS}
-        margin-bottom: 2px;
-        font-size: 36px;
-        font-weight: 700;
-        font-family: Ubuntu, Helvetica neue, Helvetica, Arial, monospace;
-    `;
-
-    return (
-        <Title>
-            {children}
-        </Title>
-    );
-});
+export const NoticeTitle: titleType = React.memo(styled.legend`
+    ${( { titleCSS } ) => titleCSS}
+    margin-bottom: 2px;
+    font-size: 36px;
+    font-weight: 700;
+    font-family: Ubuntu, Helvetica neue, Helvetica, Arial, monospace;
+`);
 
 export type iconWrapType = ( {
     textColor: string,
-    icon: IconDefinition,
-} ) => React$Node;
+    children: React$Component<FontAwesomeIcon>,
+} ) => StyledComponent;
 
-export const NoticeIconWrap: iconWrapType = React.memo(function NoticeIconWrap ( { textColor, icon } ) {
-    const IconWrap = styled.div`
-        color: ${textColor};
-        background: transparent;
-        display: flex;
-        flex-direction: column;
-        font-size: 24px;
-        border-radius: 6px;
-        padding: 4px;
-        margin-right: 3px;
-        margin-left: 3px;
-    `;
-
-    return (
-        <IconWrap>
-            <FontAwesomeIcon icon={icon} />
-        </IconWrap>
-    );
-});
+export const NoticeIconWrap: iconWrapType = React.memo(styled.div`
+    color: ${( { textColor } ) => textColor};
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    font-size: 24px;
+    border-radius: 6px;
+    padding: 4px;
+    margin-right: 3px;
+    margin-left: 3px;
+`);
 
 export type textType = ( {
     textColor: string,
-    children: React$Node | React$Node[]
-} ) => React$Node;
+    children: string,
+} ) => StyledComponent;
 
-export const NoticeText: textType = React.memo(function NoticeText ( { textColor, children } ) {
-    const Text = styled.code`
-        color: ${textColor};
-        font-size: 24px;
-        font-style: italic;
-        font-family: Operator Mono Medium, Dank mono, Ubuntu mono, helvetica neue, helvetica, arial, monospace;
-    `;
-
-    return (
-        <Text>
-            {children}
-        </Text>
-    );
-});
+export const NoticeText: textType = React.memo(styled.code`
+    color: ${( { textColor } ) => textColor};
+    font-size: 24px;
+    font-style: italic;
+    font-family: Operator Mono Medium, Dank mono, Ubuntu mono, helvetica neue, helvetica, arial, monospace;
+`);
 
 export type getColorsType = ( string, boolean ) => ({
     textColor: string,
@@ -156,7 +117,7 @@ export type getColorsType = ( string, boolean ) => ({
     icon: IconDefinition,
 });
 
-export const getColors: getColorsType = memoize(( type, inverted ) => {
+export const getColors: getColorsType = memoize(function getColors ( type, inverted ) {
     let icon = iconMap[ type ];
     let textColor = standardColorMap[ type ];
     let titleCSS = css`
@@ -189,7 +150,7 @@ export type propsType = {
     children: ?any,
 };
 
-export default function Notice ( props: propsType ) {
+export default React.memo(function Notice ( props: propsType ) {
     const {
         message,
         title,
@@ -217,8 +178,10 @@ export default function Notice ( props: propsType ) {
             <div>
                 <NoticeWrap>
                     <NoticeIconWrap
-                        textColor={textColor}
-                        icon={icon} />
+                        textColor={textColor}>
+                        <FontAwesomeIcon
+                            icon={icon} />
+                    </NoticeIconWrap>
                     <div>
                         <NoticeText textColor={textColor}>
                             {message}
@@ -229,4 +192,4 @@ export default function Notice ( props: propsType ) {
             </div>
         </NoticeFieldset>
     );
-};
+});
